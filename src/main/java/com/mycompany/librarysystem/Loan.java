@@ -57,8 +57,6 @@ public class Loan {
         return currentDate.after(dueDate);
     }
 
-    // Other methods related to the Loan class
-    // For example, any specific loan-related functionalities could be added here.
-    // ...
+    
 }
 

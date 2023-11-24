@@ -105,6 +105,7 @@ public class LibrarySystem {
                     
                     System.out.println("Enter the Book Version: ");
                     int version = scan.nextInt(); //The Book version input.
+                    scan.nextLine(); // Consume the newline character left in the input buffer after reading the String.
                     
                     // The student birthDate input
                     SimpleDateFormat date = new SimpleDateFormat("dd/MM/yyyy");
@@ -122,52 +123,56 @@ public class LibrarySystem {
                         }
                     }
                     
-                    // The Book Author input
+                    // The Book Author input.
                     System.out.println("Enter the book author name: ");
-                    /*
-                    public Author(int id, String name, String address, Date birthDate) {
-                    this.id = id;
-                    this.name = name;
-                    this.address = address;
-                    this.birthDate = birthDate;
-                    */
                     String authorName = scan.nextLine();
-                    if (library.searchByAuthor(authorName).equals(null)) {
+                    
+                    // Checking if the Author is exists in the System.
+                    if (library.searchByAuthor(authorName) == null)  { // Author not found
                         System.out.println("We did't found this author in our system, Please enter the rest of author data to add it to this System");
                         System.out.println("Enter the Author address: ");
-                        String authorAdress = scan.nextLine();
-                        
+                        String authorAddress = scan.nextLine();
+                    
                     // The bookAuthor birthDate input
                     SimpleDateFormat authorBirthDate = new SimpleDateFormat("dd/MM/yyyy");
                     boolean validInput2 = false; // When the date is entered correctly, the value of this variable becomes true.
                     while(!validInput2){
-                        System.out.println("Enter the book date (in format dd/MM/yyyy): ");
+                        System.out.println("Enter the Author birth date (in format dd/MM/yyyy): ");
                         String userInput2 = scan.nextLine();
                         Date parsedDate2;
                         try {
-                            parsedDate2 = date.parse(userInput2); //parsing the String to a Date Format.
+                            parsedDate2 = authorBirthDate.parse(userInput2); //parsing the String to a Date Format.
                             System.out.println("Parsed Date: " + parsedDate2);
                             validInput2 = true;
                         } catch (ParseException e) {
                             System.out.println("Invalid date format. Please enter date in dd/MM/yyyy format.");
                         }
+                    //Add the author.
+                    Author author = new Author(authorName, authorAddress, authorBirthDate);
+                    library.addAuthor(author);
                     }
                     }
-                     
                     
                     
-                    String inputKey = scan.nextLine(); //The student addition confirmation Key.
+                    // Confirm adding the author.
+                    System.out.println("Are you shure to add the Book " + title +
+                            "\n" + "Genre : " + genre + 
+                            "\n" + "Version: " + version +
+                            "\n" + "Date: " + date +
+                            "\n" + "Author: " + authorName + 
+                            "\n" + "press (y) or (Y) for yes, or any another key to cancel.");
+                    String inputKey = scan.nextLine(); //The Book Addition Confirmation Key.
                     
-                     //Print the confirmation result
+                     //Print the confirmation result.
                     if (inputKey.equalsIgnoreCase("Y"))
-                        System.out.println("The student " + name + " is added to the system :). "); 
+                        System.out.println("The Book " + title + " is added to the system :). "); 
                     else
                     {
                         System.out.println("The add request is canceled" );
                         break;
                     }
-                    Student student = new Student(id, name, address, birthDate, major); //Create a new Student object.
-                    library.addStudent(student); //Add the new student to the ArrayList students.
+                    Book book = new Book(title, library.getAuthorByName(authorName), genre, version, date); //Create a new Book object.
+                    library.addBook(book); //Add the new Book to the ArrayList books.
                     
                 }
                 case 3 -> {
@@ -181,8 +186,7 @@ public class LibrarySystem {
                 case 7 -> System.out.println("Exiting... Thank you!");
                 default -> System.out.println("Invalid choice. Please enter a valid option.");
             }
-            // Implement loan book functionality
-            // Implement return book functionality
+            
                     } while (choice != 7);
     }
 }

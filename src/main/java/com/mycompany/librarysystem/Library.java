@@ -4,7 +4,6 @@
  */
 package com.mycompany.librarysystem;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -119,5 +118,19 @@ public class Library {
     public Collection<Loan> getLoans() {
         return loans;
     }
+
+    public Collection<Author> getAuthors() {
+        return authors;
+    }
+    
+    public Author getAuthorByName(String nameToFind) {
+        for (Author author : authors) {
+            if (author.getName().equalsIgnoreCase(nameToFind)) {
+                return author; // Found the author by name, return it
+            }
+        }
+        return null; // Author not found
+    }
+    
 }
 

@@ -4,10 +4,47 @@
  */
 package com.mycompany.librarysystem;
 
+
 /**
  *
  * @author karamyzx
  */
-public class Journal {
+import java.text.SimpleDateFormat;
+
+public class Journal extends Book{
+    private int ConferenceNo;
+    private String ConferenceName;
+
+    public Journal(int ConferenceNo, String ConferenceName, String title, Author author, String genre, int version, SimpleDateFormat date) {
+        super(title, author, genre, version, date);
+        this.ConferenceNo = ConferenceNo;
+        this.ConferenceName = ConferenceName;
+    }
+
+    public int getConferenceNo() {
+        return ConferenceNo;
+    }
+
+    public void setConferenceNo(int ConferenceNo) {
+        this.ConferenceNo = ConferenceNo;
+    }
+
+    public String getConferenceName() {
+        return ConferenceName;
+    }
+
+    public void setConferenceName(String ConferenceName) {
+        this.ConferenceName = ConferenceName;
+    }
+
+    @Override
+    public String toString() {
+        return "Journal{" + "ConferenceNo=" + ConferenceNo + ", ConferenceName=" + ConferenceName + '}';
+    }
+    
+    
+    
+    
+    
     
 }

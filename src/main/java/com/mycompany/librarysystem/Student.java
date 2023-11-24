@@ -4,15 +4,12 @@
  */
 package com.mycompany.librarysystem;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
  * @author karamyzx
  */
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Student {
     private int id;
@@ -77,19 +74,21 @@ public class Student {
 
     
     
-
-    // Method to get information about the student
     public String getInfo() {
         return "Student ID: " + id + "\nName: " + name + "\nAddress: " + address
                 + "\nBirth Date: " + birthDate.toString() + "\nMajor: " + major;
     }
 
+    //Method to get the number of the loaned books.
     public int getNumLoans() {
         return numLoans;
     }
-
+    
+    //Method to add 1 to the numLoans
     public void incrementNumLoans() {
-        numLoans++;
+        if (numLoans < 3) {
+            numLoans++;
+        }
     }
 
     public void decrementNumLoans() {

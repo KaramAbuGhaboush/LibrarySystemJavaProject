@@ -20,6 +20,8 @@ public class Book implements Display {
     private SimpleDateFormat date;
     private boolean onLoan;
     private static int count = 0;
+    
+    
     public Book(String title, Author author, String genre, int version, SimpleDateFormat date) {
         this.title = title;
         this.author = author;
@@ -85,21 +87,19 @@ public class Book implements Display {
     public void setOnLoan(boolean onLoan) {
         this.onLoan = onLoan;
     }
-
     
-    // Method to get information about the book
+    @Override
     public String getInfo() {
         return "Title: " + title + "\nAuthor: " + author.getName() + "\nNo: " + no + "\nGenre: " + genre
                 + "\nVersion: " + version + "\nDate: " + date.toString();
     }
 
-    // Method to check if the book is on loan
+    @Override
     public boolean inLoan() {
-        return onLoan;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    // Other methods related to the Book class
-    // ...
+    
 }
 
 
