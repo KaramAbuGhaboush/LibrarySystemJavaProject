@@ -71,8 +71,6 @@ public class Student {
     public void setNumLoans(int numLoans) {
         this.numLoans = numLoans;
     }
-
-    
     
     public String getInfo() {
         return "Student ID: " + id + "\nName: " + name + "\nAddress: " + address
