@@ -31,6 +31,15 @@ public class Library {
     public void addBook(Book book) {
         books.add(book);
     }
+    
+       public Book searchByNo(int number) {
+        for (Book book : books) {
+            if (book.getNo() == number) {
+                return book;
+            }
+        }
+        return null;
+    }
 
     public Book searchByTitle(String title) {
         for (Book book : books) {

@@ -177,6 +177,42 @@ public class LibrarySystem {
                     
                 }
                 case 3 -> {
+                    int choice1;
+                    Book book = null;
+                    Student student = null;
+                    do{
+                        System.out.println("Please choose an option"+ "/n"+"1- Enter book number."+"/n"+"2-Enter book title.");
+                    
+                    choice1 = scan.nextInt();
+                switch (choice1) {
+                    case 1 -> {   
+                        System.out.println("Please enter the book number");
+                        int bookNo = scan.nextInt();
+                        book = library.searchByNo(bookNo);
+                    }
+                    case 2 -> {   
+                        System.out.println("Please enter the book title");
+                        String bookTitle = scan.nextLine();
+                        book = library.searchByTitle(bookTitle);
+                    }
+                    default -> System.out.println("Invalid option");
+                }
+                    }while(choice1<0 || choice1>2);
+                    if(book.inLoan() == true) {
+                        System.out.println("Sorry, This book is Loaned!");
+                        break;
+                    }
+                    System.out.println("Please enter the student ID");
+                    int studentId = scan.nextInt();
+                    student = library.findStudentById(studentId);
+                    if(student == null) {
+                        System.out.println("The student ID is Invalid");
+                        
+                    }
+                    
+                    
+                    
+   
                 }
                 case 4 -> {
                 }
