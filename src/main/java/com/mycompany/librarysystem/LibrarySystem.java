@@ -28,7 +28,9 @@ public class LibrarySystem {
             System.out.println("4. Return Book");
             System.out.println("5. Search Book by Title");
             System.out.println("6. Search Book by Author");
-            System.out.println("7. Exit");
+            System.out.println("7. Search Book by No");
+            System.out.println("8. Loaned books list");
+            System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             
             choice = scan.nextInt();
@@ -182,7 +184,13 @@ public class LibrarySystem {
                 }
                 case 6 -> {
                 }
-                case 7 -> System.out.println("Exiting... Thank you!");
+                case 7 -> {
+                    
+                }
+                case 8 -> {
+                    
+                }
+                case 9 -> System.out.println("Exiting... Thank you!");
                 default -> System.out.println("Invalid choice. Please enter a valid option.");
             }
             
