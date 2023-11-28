@@ -185,16 +185,14 @@ public class LibrarySystem {
                 case 6 -> {
                 }
                 case 7 -> {
-                    
                 }
                 case 8 -> {
-                    
                 }
                 case 9 -> System.out.println("Exiting... Thank you!");
                 default -> System.out.println("Invalid choice. Please enter a valid option.");
             }
             
-                    } while (choice != 7);
+                    } while (choice != 9);
     }
 }
     
