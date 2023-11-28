@@ -8,17 +8,17 @@ package com.mycompany.librarysystem;
  *
  * @author karamyzx
  */
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Loan {
     private Book book;
     private Student student;
-    private Date dueDate;
+    private LocalDate dueDate;
 
-    public Loan(Book book, Student student, Date dueDate) {
+    public Loan(Book book, Student student) {
         this.book = book;
         this.student = student;
-        this.dueDate = dueDate;
+        this.dueDate = LocalDate.now().plusDays(5);
     }
 
     // Getters and Setters for the Loan attributes
@@ -38,12 +38,12 @@ public class Loan {
         this.student = student;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
+    public void setDueDate(LocalDate currentDate) {
+        this.dueDate = currentDate;
     }
 
     // Method to get information about the loan
@@ -53,8 +53,8 @@ public class Loan {
 
     // Method to check if the loan is overdue
     public boolean isOverdue() {
-        Date currentDate = new Date();
-        return currentDate.after(dueDate);
+        LocalDate currentDate = LocalDate.now();
+        return currentDate.isAfter(dueDate);
     }
 
     

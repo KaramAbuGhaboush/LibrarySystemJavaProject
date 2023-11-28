@@ -75,9 +75,9 @@ public class Library {
     }
 
     // Methods for loan handling
-    public boolean loanBook(Student student, Book book, Date dueDate) {
+    public boolean loanBook(Student student, Book book) {
         if (student.getNumLoans() < 3 && !book.inLoan()) {
-            Loan loan = new Loan(book, student, dueDate);
+            Loan loan = new Loan(book, student);
             loans.add(loan);
             book.setOnLoan(true);
             student.incrementNumLoans();

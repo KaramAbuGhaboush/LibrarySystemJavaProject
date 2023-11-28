@@ -39,7 +39,7 @@ public class LibrarySystem {
                 case 1 -> {
                     System.out.println("Enter the student id: ");
                     int id = scan.nextInt(); //The student id input.
-                    scan.nextLine(); // // Consume the newline character left in the input buffer after reading the integer.
+                    scan.nextLine(); // Consume the newline character left in the input buffer after reading the integer.
 
                     System.out.println("Enter the student name: ");
                     String name = scan.nextLine(); //The student name input.
@@ -176,9 +176,14 @@ public class LibrarySystem {
                     Book book = null;
                     Student student = null;
                     do {
-                        System.out.println("Please choose an option" + "/n" + "1- Enter book number." + "/n" + "2-Enter book title.");
-
+                        System.out.println("""
+                                           Please choose an option: 
+                                           1-) Enter book number.
+                                           2-) Enter book title.""");
+                        System.out.println("Enter your choice: ");
                         choice1 = scan.nextInt();
+                        scan.nextLine(); // Consume the newline character left in the input buffer after reading the integer.
+                        
                         switch (choice1) {
                             case 1 -> {
                                 System.out.println("Please enter the book number");
@@ -193,6 +198,7 @@ public class LibrarySystem {
                             case 2 -> {
                                 System.out.println("Please enter the book title");
                                 String bookTitle = scan.nextLine();
+                                scan.nextLine(); // Consume the newline character left in the input buffer after reading the integer.
                                 book = library.searchByTitle(bookTitle);
                                 if (book == null) {
                                     System.out.println("we didn't find this book!, Please retry again");
@@ -235,6 +241,7 @@ public class LibrarySystem {
 
                     //Print the confirmation result.
                     if (inputKey.equalsIgnoreCase("Y")) {
+                        library.loanBook(student, book);
                         System.out.println("The Book " + book.getTitle() + " is loaned successfully :).");
                     } else {
                         System.out.println("The loan request is canceled");
@@ -243,6 +250,7 @@ public class LibrarySystem {
                     break;
                 }
                 case 4 -> {
+                    
                 }
                 case 5 -> {
                 }
