@@ -184,8 +184,7 @@ public class LibrarySystem {
                                 System.out.println("Please enter the book number");
                                 int bookNo = scan.nextInt();
                                 book = library.searchByNo(bookNo);
-                                if (book == null)
-                                {
+                                if (book == null) {
                                     System.out.println("we didn't find this book!, Please retry again");
                                     choice1 = 3;
                                 }
@@ -195,8 +194,7 @@ public class LibrarySystem {
                                 System.out.println("Please enter the book title");
                                 String bookTitle = scan.nextLine();
                                 book = library.searchByTitle(bookTitle);
-                                if (book == null)
-                                {
+                                if (book == null) {
                                     System.out.println("we didn't find this book!, Please retry again");
                                     choice1 = 3;
                                 }
@@ -205,27 +203,44 @@ public class LibrarySystem {
                                 System.out.println("Invalid option");
                         }
                     } while (choice1 < 0 || choice1 > 2);
-                    
-                    
+
                     if (book.inLoan() == true) {
                         System.out.println("Sorry, This book is Loaned!");
                         break;
                     }
-                    
-                    boolean stuValidation = false;
-                    while (stuValidation)
-                    {
-                    System.out.println("Please enter the student ID");
-                    int studentId = scan.nextInt();
-                    student = library.findStudentById(studentId);
-                    if (student == null) {
-                        System.out.println("The student ID is Invalid");
 
+                    boolean stuValidation = false;
+                    while (stuValidation) {
+                        System.out.println("Please enter the student ID");
+                        int studentId = scan.nextInt();
+                        student = library.findStudentById(studentId);
+                        if (student == null) {
+                            System.out.println("The student ID is Invalid");
+
+                        } else {
+                            stuValidation = true;
+                        }
                     }
-                    else
-                        stuValidation = true;
+
+                    // Confirm Loan process.
+                    System.out.println("Are you sure you want to Loan the following book" + book.getTitle()
+                            + "\n" + " genre: " + book.getGenre()
+                            + "\n" + "Version: " + book.getVersion()
+                            + "\n" + "Date: " + book.getDate()
+                            + "\n" + "Author: " + book.getAuthor()
+                            + "for the student with student:" + student.getName()
+                            + " with ID:" + student.getId()
+                            + "\n" + "press (y) or (Y) for yes, or any another key to cancel.");
+                    String inputKey = scan.nextLine(); //The Book Addition Confirmation Key.
+
+                    //Print the confirmation result.
+                    if (inputKey.equalsIgnoreCase("Y")) {
+                        System.out.println("The Book " + book.getTitle() + " is loaned successfully :).");
+                    } else {
+                        System.out.println("The loan request is canceled");
+                        break;
                     }
-                    
+                    break;
                 }
                 case 4 -> {
                 }
