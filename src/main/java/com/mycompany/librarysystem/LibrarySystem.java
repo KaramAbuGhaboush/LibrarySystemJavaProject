@@ -90,12 +90,7 @@ public class LibrarySystem {
                 }
                 //--------------------------------------------------------------------------------------------------------------
                 //Book Addition
-                /*
-                 private Author author;
-                 
-                 
-                 private SimpleDateFormat date
-                */
+                
                 case 2 -> {
                     System.out.println("Enter the Book Title: ");
                     String title = scan.nextLine(); //The Book title input.
@@ -127,6 +122,7 @@ public class LibrarySystem {
                     System.out.println("Enter the book author name: ");
                     String authorName = scan.nextLine();
                     
+                    Author author = new Author();
                     // Checking if the Author is exists in the System.
                     if (library.searchByAuthor(authorName) == null)  { // Author not found
                         System.out.println("We did't found this author in our system, Please enter the rest of author data to add it to this System");
@@ -148,9 +144,12 @@ public class LibrarySystem {
                             System.out.println("Invalid date format. Please enter date in dd/MM/yyyy format.");
                         }
                     //Add the author.
-                    Author author = new Author(authorName, authorAddress, authorBirthDate);
-                    library.addAuthor(author);
+                    author = new Author(authorName, authorAddress, authorBirthDate);
+                    
                     }
+                    }
+                    else {
+                        author = library.getAuthorByName(authorName);
                     }
                     
                     
@@ -171,7 +170,7 @@ public class LibrarySystem {
                         System.out.println("The add request is canceled" );
                         break;
                     }
-                    Book book = new Book(title, library.getAuthorByName(authorName), genre, version, date); //Create a new Book object.
+                    Book book = new Book(title, author, genre, version, date); //Create a new Book object.
                     library.addBook(book); //Add the new Book to the ArrayList books.
                     
                 }
