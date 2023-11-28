@@ -4,26 +4,27 @@
  */
 package com.mycompany.librarysystem;
 
-
 /**
  *
  * @author karamyzx
  */
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 public class Library {
+
     private Collection<Book> books;
     private Collection<Student> students;
     private Collection<Loan> loans;
-    private Collection<Author> authors;
+
     public Library() {
         books = new ArrayList<>();
         students = new ArrayList<>();
         loans = new ArrayList<>();
-        authors = new ArrayList<>();
+
     }
 
     // Methods for book management
@@ -63,11 +64,7 @@ public class Library {
         }
         return null;
     }
-    
-    public void addAuthor(Author author) {
-        authors.add(author);
-    }
-    
+
     // Methods for loan handling
     public boolean loanBook(Student student, Book book, Date dueDate) {
         if (student.getNumLoans() < 3 && !book.inLoan()) {
@@ -103,9 +100,6 @@ public class Library {
         return overdueLoans;
     }
 
-    // Other methods related to loan management, checking loan status, etc.
-    // ...
-
     // Getters for books, students, and loans in the library
     public Collection<Book> getBooks() {
         return books;
@@ -119,18 +113,14 @@ public class Library {
         return loans;
     }
 
-    public Collection<Author> getAuthors() {
-        return authors;
-    }
-    
+
     public Author getAuthorByName(String nameToFind) {
-        for (Author author : authors) {
-            if (author.getName().equalsIgnoreCase(nameToFind)) {
-                return author; // Found the author by name, return it
+        for (Book book : books) {
+            if (book.getAuthor().getName().equalsIgnoreCase(nameToFind)) {
+                return book.getAuthor(); // Found the author by name, return it
             }
         }
         return null; // Author not found
     }
-    
-}
 
+}

@@ -23,6 +23,10 @@ public class Author {
         this.birthDate = birthDate;
     }
 
+    Author() {
+        
+    }
+
     // Getters and Setters for the Author attributes
     public int getId() {
         return id;

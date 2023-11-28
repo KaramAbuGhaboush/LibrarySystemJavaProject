@@ -5,13 +5,14 @@
 package com.mycompany.librarysystem;
 
 import java.text.SimpleDateFormat;
+
 /**
  *
  * @author karamyzx
  */
 
-
 public class Book implements Display {
+
     private String title;
     private Author author;
     private int no;
@@ -20,8 +21,7 @@ public class Book implements Display {
     private SimpleDateFormat date;
     private boolean onLoan;
     private static int count = 0;
-    
-    
+
     public Book(String title, Author author, String genre, int version, SimpleDateFormat date) {
         this.title = title;
         this.author = author;
@@ -87,7 +87,7 @@ public class Book implements Display {
     public void setOnLoan(boolean onLoan) {
         this.onLoan = onLoan;
     }
-    
+
     @Override
     public String getInfo() {
         return "Title: " + title + "\nAuthor: " + author.getName() + "\nNo: " + no + "\nGenre: " + genre
@@ -99,7 +99,4 @@ public class Book implements Display {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    
 }
-
-
