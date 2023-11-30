@@ -98,7 +98,7 @@ public class LibrarySystem {
                     System.out.println("Enter the Book Genre: ");
                     String genre = scan.nextLine(); //The Book genre input.
 
-                    System.out.println("Enter the Book Version: ");
+                    System.out.println("Enter the Book Version (as a number): ");
                     int version = scan.nextInt(); //The Book version input.
                     scan.nextLine(); // Consume the newline character left in the input buffer after reading the String.
 
@@ -198,15 +198,17 @@ public class LibrarySystem {
                             case 2 -> {
                                 System.out.println("Please enter the book title");
                                 String bookTitle = scan.nextLine();
-                                scan.nextLine(); // Consume the newline character left in the input buffer after reading the integer.
+                                
                                 book = library.searchByTitle(bookTitle);
                                 if (book == null) {
                                     System.out.println("we didn't find this book!, Please retry again");
                                     choice1 = 3;
                                 }
                             }
-                            default ->
+                            default ->{
                                 System.out.println("Invalid option");
+                                choice1 = 3;
+                            }
                         }
                     } while (choice1 < 0 || choice1 > 2);
 
