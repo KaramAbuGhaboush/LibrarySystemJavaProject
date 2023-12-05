@@ -5,7 +5,9 @@ package com.mycompany.librarysystem;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -252,15 +254,68 @@ public class LibrarySystem {
                     break;
                 }
                 case 4 -> {
-                    
+                    // Return Book
+                    System.out.println("Enter the book's number to return: ");
+                    int bookNo = scan.nextInt();
+                    Book bookToReturn = library.searchByNo(bookNo);
+                    if (bookToReturn == null) {
+                        System.out.println("Book not found!");
+                    } else {
+                        boolean returnSuccess = library.returnBook(bookToReturn);
+                        if (returnSuccess) {
+                            System.out.println("Book returned successfully.");
+                        } else {
+                            System.out.println("Failed to return the book.");
+                        }
+                    }
+
                 }
                 case 5 -> {
+                    // Search Book by Title
+                    System.out.println("Enter book title to search: ");
+                    String bookTitle = scan.nextLine();
+                    
+                    Book foundBook = library.searchByTitle(bookTitle);
+                    if (foundBook != null) {
+                        System.out.println("Book found: " + foundBook.getInfo());
+                    } else {
+                        System.out.println("No book found with the given title.");
+                    }
                 }
                 case 6 -> {
+                    // Search Book by Author
+                    System.out.println("Enter author's name to find their books: ");
+                    String authorName = scan.nextLine();
+                    List<Book> foundBooks = library.searchByAuthor(authorName);
+                    if (!foundBooks.isEmpty()) {
+                        for (Book b : foundBooks) {
+                            System.out.println(b.getInfo());
+                        }
+                    } else {
+                        System.out.println("No books found for the given author.");
+                    }
                 }
                 case 7 -> {
+                    // Search Book by No
+                    System.out.println("Enter book number to search: ");
+                    int bookNumber = scan.nextInt();
+                    Book foundBook = library.searchByNo(bookNumber);
+                    if (foundBook != null) {
+                        System.out.println("Book found: " + foundBook.getInfo());
+                    } else {
+                        System.out.println("No book found with the given number.");
+                    }
                 }
                 case 8 -> {
+                    // Loaned books list
+                    Collection<Loan> loans = library.getLoans();
+                    if (loans.isEmpty()) {
+                        System.out.println("There are no loaned books at the moment.");
+                    } else {
+                        for (Loan l : loans) {
+                            System.out.println(l.getBook().getTitle() + " loaned by " + l.getStudent().getName());
+                        }
+                    }
                 }
                 case 9 ->
                     System.out.println("Exiting... Thank you!");

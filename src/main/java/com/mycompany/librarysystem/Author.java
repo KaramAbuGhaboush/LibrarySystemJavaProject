@@ -24,7 +24,6 @@ public class Author {
     }
 
     Author() {
-        
     }
 
     // Getters and Setters for the Author attributes
