@@ -9,6 +9,8 @@ package com.mycompany.librarysystem;
  * @author karamyzx
  */
 public interface Display {
+
     String getInfo();
-    boolean inLoan();        
+
+    boolean inLoan();
 }

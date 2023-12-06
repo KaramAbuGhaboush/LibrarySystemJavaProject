@@ -8,7 +8,6 @@ package com.mycompany.librarysystem;
  *
  * @author karamyzx
  */
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -30,8 +29,8 @@ public class Library {
     public void addBook(Book book) {
         books.add(book);
     }
-    
-       public Book searchByNo(int number) {
+
+    public Book searchByNo(int number) {
         for (Book book : books) {
             if (book.getNo() == number) {
                 return book;
@@ -120,7 +119,6 @@ public class Library {
     public Collection<Loan> getLoans() {
         return loans;
     }
-
 
     public Author getAuthorByName(String nameToFind) {
         for (Book book : books) {

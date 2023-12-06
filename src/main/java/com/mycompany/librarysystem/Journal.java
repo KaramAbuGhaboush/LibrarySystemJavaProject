@@ -4,14 +4,14 @@
  */
 package com.mycompany.librarysystem;
 
-
 /**
  *
  * @author karamyzx
  */
 import java.text.SimpleDateFormat;
 
-public class Journal extends Book{
+public class Journal extends Book {
+
     private int ConferenceNo;
     private String ConferenceName;
 
@@ -41,10 +41,5 @@ public class Journal extends Book{
     public String toString() {
         return "Journal{" + "ConferenceNo=" + ConferenceNo + ", ConferenceName=" + ConferenceName + '}';
     }
-    
-    
-    
-    
-    
-    
+
 }

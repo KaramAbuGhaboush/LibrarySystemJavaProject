@@ -11,6 +11,7 @@ package com.mycompany.librarysystem;
 import java.time.LocalDate;
 
 public class Loan {
+
     private Book book;
     private Student student;
     private LocalDate dueDate;
@@ -57,6 +58,4 @@ public class Loan {
         return currentDate.isAfter(dueDate);
     }
 
-    
 }
-

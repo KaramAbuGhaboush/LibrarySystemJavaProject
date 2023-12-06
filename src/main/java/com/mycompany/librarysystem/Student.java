@@ -4,7 +4,6 @@
  */
 package com.mycompany.librarysystem;
 
-
 /**
  *
  * @author karamyzx
@@ -12,13 +11,18 @@ package com.mycompany.librarysystem;
 import java.text.SimpleDateFormat;
 
 public class Student {
+
     private int id;
     private String name;
     private String address;
-    private SimpleDateFormat birthDate = new SimpleDateFormat("dd/MM/yyyy");;
+    private SimpleDateFormat birthDate = new SimpleDateFormat("dd/MM/yyyy");
+    ;
     private String major;
     private int numLoans;
 
+    public Student() {
+        
+    }
     public Student(int id, String name, String address, SimpleDateFormat birthDate, String major) {
         this.id = id;
         this.name = name;
@@ -71,7 +75,7 @@ public class Student {
     public void setNumLoans(int numLoans) {
         this.numLoans = numLoans;
     }
-    
+
     public String getInfo() {
         return "Student ID: " + id + "\nName: " + name + "\nAddress: " + address
                 + "\nBirth Date: " + birthDate.toString() + "\nMajor: " + major;
@@ -81,7 +85,7 @@ public class Student {
     public int getNumLoans() {
         return numLoans;
     }
-    
+
     //Method to add 1 to the numLoans
     public void incrementNumLoans() {
         if (numLoans < 3) {
@@ -95,4 +99,3 @@ public class Student {
         }
     }
 }
-

@@ -22,17 +22,20 @@ public class LibrarySystem {
 
         int choice;
         do {
-            System.out.println("Library Management System Menu:");
-            System.out.println("1. Add Student");
-            System.out.println("2. Add Book");
-            System.out.println("3. Loan Book");
-            System.out.println("4. Return Book");
-            System.out.println("5. Search Book by Title");
-            System.out.println("6. Search Book by Author");
-            System.out.println("7. Search Book by No");
-            System.out.println("8. Loaned books list");
-            System.out.println("9. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("""
+        Library Management System Menu:
+        1. Add Student.
+        2. Add Book.
+        3. Loan Book.
+        4. Return Book.
+        5. Search Book by Title.
+        6. Search Book by Author.
+        7. Search Book by No.
+        8. Loaned books list.
+        9. Search if a book is loaned.
+        10. Exit the App.
+        Enter your choice: 
+        """);
 
             choice = scan.nextInt();
             scan.nextLine(); // Consume the newline character.
@@ -83,12 +86,14 @@ public class LibrarySystem {
                     //Print the confirmation result
                     if (inputKey.equalsIgnoreCase("Y")) {
                         System.out.println("The student " + name + " is added to the system :). ");
+                        Student student = new Student(id, name, address, birthDate, major); //Create a new Student object.
+                        library.addStudent(student); //Add the new student to the ArrayList students.
+                        break;
                     } else {
                         System.out.println("The add request is canceled");
                         break;
                     }
-                    Student student = new Student(id, name, address, birthDate, major); //Create a new Student object.
-                    library.addStudent(student); //Add the new student to the ArrayList students.
+
                 }
                 //--------------------------------------------------------------------------------------------------------------
                 //Book Addition
@@ -126,22 +131,22 @@ public class LibrarySystem {
 
                     Author author = new Author();
                     // Checking if the Author is exists in the System.
-                    if (library.searchByAuthor(authorName) == null) { // Author not found
-                        System.out.println("We did't found this author in our system, Please enter the rest of author data to add it to this System");
+                    if (library.searchByAuthor(authorName).isEmpty()) { // Author not found
+                        System.out.println("We did't found this author in our system, Please enter the rest of author data to add it to this System.");
                         System.out.println("Enter the Author address: ");
                         String authorAddress = scan.nextLine();
-
+                        
                         // The bookAuthor birthDate input
                         SimpleDateFormat authorBirthDate = new SimpleDateFormat("dd/MM/yyyy");
-                        boolean validInput2 = false; // When the date is entered correctly, the value of this variable becomes true.
-                        while (!validInput2) {
+                        boolean validInput2 = true; // When the date is entered correctly, the value of this variable becomes false.
+                        while (validInput2) {
                             System.out.println("Enter the Author birth date (in format dd/MM/yyyy): ");
                             String userInput2 = scan.nextLine();
                             Date parsedDate2;
                             try {
                                 parsedDate2 = authorBirthDate.parse(userInput2); //parsing the String to a Date Format.
                                 System.out.println("Parsed Date: " + parsedDate2);
-                                validInput2 = true;
+                                validInput2 = false;
                             } catch (ParseException e) {
                                 System.out.println("Invalid date format. Please enter date in dd/MM/yyyy format.");
                             }
@@ -173,10 +178,12 @@ public class LibrarySystem {
                     library.addBook(book); //Add the new Book to the ArrayList books.
 
                 }
+                //--------------------------------------------------------------------------------------------------------------
+                //Loan a Book.
                 case 3 -> {
                     int choice1;
-                    Book book = null;
-                    Student student = null;
+                    Book book = new Book();
+                    Student student = new Student();
                     do {
                         System.out.println("""
                                            Please choose an option: 
@@ -185,7 +192,7 @@ public class LibrarySystem {
                         System.out.println("Enter your choice: ");
                         choice1 = scan.nextInt();
                         scan.nextLine(); // Consume the newline character left in the input buffer after reading the integer.
-                        
+
                         switch (choice1) {
                             case 1 -> {
                                 System.out.println("Please enter the book number");
@@ -193,23 +200,22 @@ public class LibrarySystem {
                                 book = library.searchByNo(bookNo);
                                 if (book == null) {
                                     System.out.println("we didn't find this book!, Please retry again");
-                                    choice1 = 3;
+                                    break;
                                 }
                                 break;
                             }
                             case 2 -> {
-                                System.out.println("Please enter the book title");
+                                System.out.println("Please enter the book title: ");
                                 String bookTitle = scan.nextLine();
-                                
                                 book = library.searchByTitle(bookTitle);
                                 if (book == null) {
                                     System.out.println("we didn't find this book!, Please retry again");
-                                    choice1 = 3;
+                                    break;
                                 }
                             }
-                            default ->{
+                            default -> {
                                 System.out.println("Invalid option");
-                                choice1 = 3;
+                                break;
                             }
                         }
                     } while (choice1 < 0 || choice1 > 2);
@@ -218,15 +224,15 @@ public class LibrarySystem {
                         System.out.println("Sorry, This book is Loaned!");
                         break;
                     }
-
+                    
+                    //Student input
                     boolean stuValidation = false;
                     while (stuValidation) {
-                        System.out.println("Please enter the student ID");
+                        System.out.println("Please enter the student ID: ");
                         int studentId = scan.nextInt();
                         student = library.findStudentById(studentId);
                         if (student == null) {
                             System.out.println("The student ID is Invalid");
-
                         } else {
                             stuValidation = true;
                         }
@@ -238,8 +244,8 @@ public class LibrarySystem {
                             + "\n" + "Version: " + book.getVersion()
                             + "\n" + "Date: " + book.getDate()
                             + "\n" + "Author: " + book.getAuthor()
-                            + "for the student with student:" + student.getName()
-                            + " with ID:" + student.getId()
+                            + "\n" + "for the student with student:" + student.getName()
+                            + "\n" + " with ID:" + student.getId()
                             + "\n" + "press (y) or (Y) for yes, or any another key to cancel.");
                     String inputKey = scan.nextLine(); //The Book Addition Confirmation Key.
 
@@ -253,8 +259,10 @@ public class LibrarySystem {
                     }
                     break;
                 }
+                //--------------------------------------------------------------------------------------------------------------
+                // Return Book
+
                 case 4 -> {
-                    // Return Book
                     System.out.println("Enter the book's number to return: ");
                     int bookNo = scan.nextInt();
                     Book bookToReturn = library.searchByNo(bookNo);
@@ -270,11 +278,13 @@ public class LibrarySystem {
                     }
 
                 }
+                //--------------------------------------------------------------------------------------------------------------
+                // Search Book by Title.
+
                 case 5 -> {
-                    // Search Book by Title
                     System.out.println("Enter book title to search: ");
                     String bookTitle = scan.nextLine();
-                    
+
                     Book foundBook = library.searchByTitle(bookTitle);
                     if (foundBook != null) {
                         System.out.println("Book found: " + foundBook.getInfo());
@@ -282,8 +292,10 @@ public class LibrarySystem {
                         System.out.println("No book found with the given title.");
                     }
                 }
+                //--------------------------------------------------------------------------------------------------------------
+                // Search Book by Author.
+
                 case 6 -> {
-                    // Search Book by Author
                     System.out.println("Enter author's name to find their books: ");
                     String authorName = scan.nextLine();
                     List<Book> foundBooks = library.searchByAuthor(authorName);
@@ -295,8 +307,10 @@ public class LibrarySystem {
                         System.out.println("No books found for the given author.");
                     }
                 }
+                //--------------------------------------------------------------------------------------------------------------
+                // Search Book by No.
+
                 case 7 -> {
-                    // Search Book by No
                     System.out.println("Enter book number to search: ");
                     int bookNumber = scan.nextInt();
                     Book foundBook = library.searchByNo(bookNumber);
@@ -306,23 +320,47 @@ public class LibrarySystem {
                         System.out.println("No book found with the given number.");
                     }
                 }
+                //--------------------------------------------------------------------------------------------------------------
+                // Loaned books list.
+
                 case 8 -> {
-                    // Loaned books list
                     Collection<Loan> loans = library.getLoans();
                     if (loans.isEmpty()) {
                         System.out.println("There are no loaned books at the moment.");
                     } else {
-                        for (Loan l : loans) {
-                            System.out.println(l.getBook().getTitle() + " loaned by " + l.getStudent().getName());
+                        for (Loan loan : loans) {
+                            System.out.println(loan.getBook().getTitle() + " loaned by " + loan.getStudent().getName());
                         }
                     }
                 }
-                case 9 ->
+                //--------------------------------------------------------------------------------------------------------------
+                // Search if a Book is Loaned.
+
+                case 9 -> {
+                    System.out.println("Enter book title to search: ");
+                    String bookTitle = scan.nextLine();
+
+                    Book foundBook = library.searchByTitle(bookTitle);
+                    if (foundBook == null) {
+                        System.out.println("No book found with the given title.");
+                    } else {
+                        if (foundBook.inLoan()) {
+                            System.out.println("The Book is loaned.");
+                        } else {
+                            System.out.println("The Book is not loaned.");
+                        }
+                    }
+                }
+                //--------------------------------------------------------------------------------------------------------------
+                // Exit the app.
+
+                case 10 -> {
                     System.out.println("Exiting... Thank you!");
+                }
                 default ->
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
 
-        } while (choice != 9);
+        } while (choice != 10);
     }
 }

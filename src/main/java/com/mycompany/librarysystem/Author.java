@@ -11,11 +11,13 @@ package com.mycompany.librarysystem;
 import java.text.SimpleDateFormat;
 
 public class Author {
+
     private int id;
     private String name;
     private String address;
     private SimpleDateFormat birthDate;
     private static int count;
+
     public Author(String name, String address, SimpleDateFormat birthDate) {
         this.id = count++;
         this.name = name;
@@ -64,4 +66,3 @@ public class Author {
         return "Author ID: " + id + "\nName: " + name + "\nAddress: " + address + "\nBirth Date: " + birthDate.toString();
     }
 }
-

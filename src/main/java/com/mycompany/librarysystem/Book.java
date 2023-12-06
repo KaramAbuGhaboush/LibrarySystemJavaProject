@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
  *
  * @author karamyzx
  */
-
 public class Book implements Display {
 
     private String title;
@@ -22,6 +21,10 @@ public class Book implements Display {
     private boolean onLoan;
     private static int count = 0;
 
+    public Book() {
+        
+    }
+    
     public Book(String title, Author author, String genre, int version, SimpleDateFormat date) {
         this.title = title;
         this.author = author;
@@ -78,10 +81,6 @@ public class Book implements Display {
 
     public void setDate(SimpleDateFormat date) {
         this.date = date;
-    }
-
-    public boolean isOnLoan() {
-        return onLoan;
     }
 
     public void setOnLoan(boolean onLoan) {

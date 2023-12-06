@@ -4,7 +4,6 @@
  */
 package com.mycompany.librarysystem;
 
-
 /**
  *
  * @author karamyzx
@@ -12,7 +11,7 @@ package com.mycompany.librarysystem;
 import java.text.SimpleDateFormat;
 
 public class Magazine extends Book {
-    
+
     private int issueNo;
     private SimpleDateFormat releaseDate;
 
@@ -42,7 +41,5 @@ public class Magazine extends Book {
     public String toString() {
         return "Magazine{" + "issueNo=" + issueNo + ", releaseDate=" + releaseDate + '}';
     }
-    
-    
-    
+
 }
