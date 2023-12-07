@@ -218,7 +218,7 @@ public class LibrarySystem {
                                 break;
                             }
                         }
-                    } while (choice1 < 0 || choice1 > 2);
+                    } while (choice1 < 1 || choice1 > 2);
 
                     if (book.inLoan() == true) {
                         System.out.println("Sorry, This book is Loaned!");
