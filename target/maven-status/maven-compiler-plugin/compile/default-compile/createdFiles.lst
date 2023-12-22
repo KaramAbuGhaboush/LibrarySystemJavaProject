@@ -1,9 +1,12 @@
 com\mycompany\librarysystem\Book.class
 com\mycompany\librarysystem\Display.class
 com\mycompany\librarysystem\LibrarySystem.class
+com\mycompany\librarysystem\MainMenu$2.class
 com\mycompany\librarysystem\Student.class
+com\mycompany\librarysystem\MainMenu$1.class
 com\mycompany\librarysystem\Library.class
 com\mycompany\librarysystem\Loan.class
+com\mycompany\librarysystem\MainMenu.class
 com\mycompany\librarysystem\Magazine.class
 com\mycompany\librarysystem\Author.class
 com\mycompany\librarysystem\Journal.class

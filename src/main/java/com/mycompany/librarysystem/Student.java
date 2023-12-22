@@ -16,7 +16,6 @@ public class Student {
     private String name;
     private String address;
     private SimpleDateFormat birthDate = new SimpleDateFormat("dd/MM/yyyy");
-    ;
     private String major;
     private int numLoans;
 

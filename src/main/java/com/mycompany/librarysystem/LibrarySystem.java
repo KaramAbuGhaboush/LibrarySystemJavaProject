@@ -135,7 +135,7 @@ public class LibrarySystem {
                         System.out.println("We did't found this author in our system, Please enter the rest of author data to add it to this System.");
                         System.out.println("Enter the Author address: ");
                         String authorAddress = scan.nextLine();
-                        
+
                         // The bookAuthor birthDate input
                         SimpleDateFormat authorBirthDate = new SimpleDateFormat("dd/MM/yyyy");
                         boolean validInput2 = true; // When the date is entered correctly, the value of this variable becomes false.
@@ -181,83 +181,52 @@ public class LibrarySystem {
                 //--------------------------------------------------------------------------------------------------------------
                 //Loan a Book.
                 case 3 -> {
-                    int choice1;
-                    Book book = new Book();
-                    Student student = new Student();
-                    do {
-                        System.out.println("""
-                                           Please choose an option: 
-                                           1-) Enter book number.
-                                           2-) Enter book title.""");
-                        System.out.println("Enter your choice: ");
-                        choice1 = scan.nextInt();
-                        scan.nextLine(); // Consume the newline character left in the input buffer after reading the integer.
 
-                        switch (choice1) {
-                            case 1 -> {
-                                System.out.println("Please enter the book number");
-                                int bookNo = scan.nextInt();
-                                book = library.searchByNo(bookNo);
-                                if (book == null) {
-                                    System.out.println("we didn't find this book!, Please retry again");
-                                    break;
-                                }
-                                break;
-                            }
-                            case 2 -> {
-                                System.out.println("Please enter the book title: ");
-                                String bookTitle = scan.nextLine();
-                                book = library.searchByTitle(bookTitle);
-                                if (book == null) {
-                                    System.out.println("we didn't find this book!, Please retry again");
-                                    break;
-                                }
-                            }
-                            default -> {
-                                System.out.println("Invalid option");
-                                break;
-                            }
+                    System.out.println("Would you like to search for the book by (1) Name or (2) Number?");
+                    int searchChoice = scan.nextInt();
+                    scan.nextLine(); // Consume the newline character left in the buffer.
+                    Book bookToLoan = null;
+
+                    if (searchChoice == 1) {
+                        System.out.println("Enter book title to search: ");
+                        String bookTitle = scan.nextLine(); // Read the book title.
+                        bookToLoan = library.searchByTitle(bookTitle);
+                        if (bookToLoan == null) {
+                            System.out.println("Book not found!");
+                            break; // Exit the case if the book doesn't exist.
                         }
-                    } while (choice1 < 1 || choice1 > 2);
-
-                    if (book.inLoan() == true) {
-                        System.out.println("Sorry, This book is Loaned!");
-                        break;
-                    }
-                    
-                    //Student input
-                    boolean stuValidation = false;
-                    while (stuValidation) {
-                        System.out.println("Please enter the student ID: ");
-                        int studentId = scan.nextInt();
-                        student = library.findStudentById(studentId);
-                        if (student == null) {
-                            System.out.println("The student ID is Invalid");
-                        } else {
-                            stuValidation = true;
+                    } else if (searchChoice == 2) {
+                        System.out.println("Enter book number to loan: ");
+                        int bookNo = scan.nextInt(); // Read the book number.
+                        scan.nextLine(); // Consume the newline character left in the buffer.
+                        bookToLoan = library.searchByNo(bookNo);
+                        if (bookToLoan == null) {
+                            System.out.println("Book not found!");
+                            break; // Exit the case if the book doesn't exist.
                         }
-                    }
-
-                    // Confirm Loan process.
-                    System.out.println("Are you sure you want to Loan the following book" + book.getTitle()
-                            + "\n" + " genre: " + book.getGenre()
-                            + "\n" + "Version: " + book.getVersion()
-                            + "\n" + "Date: " + book.getDate()
-                            + "\n" + "Author: " + book.getAuthor()
-                            + "\n" + "for the student with student:" + student.getName()
-                            + "\n" + " with ID:" + student.getId()
-                            + "\n" + "press (y) or (Y) for yes, or any another key to cancel.");
-                    String inputKey = scan.nextLine(); //The Book Addition Confirmation Key.
-
-                    //Print the confirmation result.
-                    if (inputKey.equalsIgnoreCase("Y")) {
-                        library.loanBook(student, book);
-                        System.out.println("The Book " + book.getTitle() + " is loaned successfully :).");
                     } else {
-                        System.out.println("The loan request is canceled");
+                        System.out.println("Invalid search option.");
                         break;
                     }
-                    break;
+
+                    System.out.println("Enter the student id: ");
+                    int studentId = scan.nextInt(); // Read the student id.
+                    scan.nextLine(); // Consume the newline character left in the buffer.
+
+                    Student student = library.findStudentById(studentId); // Find the student with the given id.
+                    if (student == null) {
+                        System.out.println("Student not found!");
+                        break; // Exit the case if the student doesn't exist.
+                    }
+
+                    // Attempt to loan the book to the student.
+                    boolean loanSuccess = library.loanBook(student, bookToLoan);
+                    if (loanSuccess) {
+                        System.out.println("Book loaned successfully to " + student.getName() + "!");
+                    } else {
+                        System.out.println("Could not loan the book. The book might already be on loan, or the student has reached their loan limit.");
+                    }
+
                 }
                 //--------------------------------------------------------------------------------------------------------------
                 // Return Book
@@ -329,7 +298,8 @@ public class LibrarySystem {
                         System.out.println("There are no loaned books at the moment.");
                     } else {
                         for (Loan loan : loans) {
-                            System.out.println(loan.getBook().getTitle() + " loaned by " + loan.getStudent().getName());
+                            System.out.println("Book" + loan.getBook().getTitle() +
+                                 " loaned by student: " + loan.getStudent().getName() + "with ID: "+loan.getStudent().getId());
                         }
                     }
                 }
@@ -345,9 +315,9 @@ public class LibrarySystem {
                         System.out.println("No book found with the given title.");
                     } else {
                         if (foundBook.inLoan()) {
-                            System.out.println("The Book is loaned.");
+                            System.out.println("The Book with title "+ bookTitle +"is loaned.");
                         } else {
-                            System.out.println("The Book is not loaned.");
+                            System.out.println("The Book with title" + bookTitle + "is not loaned.");
                         }
                     }
                 }
@@ -360,6 +330,8 @@ public class LibrarySystem {
                 default ->
                     System.out.println("Invalid choice. Please enter a valid option.");
             }
+            System.out.println("  "
+                    + "");
 
         } while (choice != 10);
     }
