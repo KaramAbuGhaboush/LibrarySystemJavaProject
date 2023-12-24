@@ -22,6 +22,9 @@ public class Loan {
         this.dueDate = LocalDate.now().plusDays(5);
     }
 
+    Loan() {
+    }
+
     // Getters and Setters for the Loan attributes
     public Book getBook() {
         return book;

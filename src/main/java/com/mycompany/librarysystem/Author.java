@@ -8,17 +8,17 @@ package com.mycompany.librarysystem;
  *
  * @author karamyzx
  */
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Author {
 
     private int id;
     private String name;
     private String address;
-    private SimpleDateFormat birthDate;
+    private Date birthDate;
     private static int count;
 
-    public Author(String name, String address, SimpleDateFormat birthDate) {
+    public Author(String name, String address, Date birthDate) {
         this.id = count++;
         this.name = name;
         this.address = address;
@@ -53,11 +53,11 @@ public class Author {
         this.address = address;
     }
 
-    public SimpleDateFormat getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(SimpleDateFormat birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

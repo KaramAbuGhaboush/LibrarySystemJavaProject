@@ -8,17 +8,20 @@ package com.mycompany.librarysystem;
  *
  * @author karamyzx
  */
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Journal extends Book {
 
     private int ConferenceNo;
     private String ConferenceName;
 
-    public Journal(int ConferenceNo, String ConferenceName, String title, Author author, String genre, int version, SimpleDateFormat date) {
+    public Journal(int ConferenceNo, String ConferenceName, String title, Author author, String genre, int version, Date date) {
         super(title, author, genre, version, date);
         this.ConferenceNo = ConferenceNo;
         this.ConferenceName = ConferenceName;
+    }
+
+    Journal() {
     }
 
     public int getConferenceNo() {

@@ -1,12 +1,13 @@
 com\mycompany\librarysystem\MainMenu$5.class
-com\mycompany\librarysystem\LibrarySystem.class
 com\mycompany\librarysystem\MainMenu$14.class
+com\mycompany\librarysystem\MainMenu$24.class
 com\mycompany\librarysystem\MainMenu$19.class
 com\mycompany\librarysystem\MainMenu$22.class
 com\mycompany\librarysystem\MainMenu$12.class
 com\mycompany\librarysystem\MainMenu.class
 com\mycompany\librarysystem\MainMenu$16.class
 com\mycompany\librarysystem\MainMenu$2.class
+com\mycompany\librarysystem\MainMenu$26.class
 com\mycompany\librarysystem\MainMenu$10.class
 com\mycompany\librarysystem\MainMenu$7.class
 com\mycompany\librarysystem\MainMenu$20.class
@@ -16,6 +17,7 @@ com\mycompany\librarysystem\MainMenu$18.class
 com\mycompany\librarysystem\Display.class
 com\mycompany\librarysystem\MainMenu$23.class
 com\mycompany\librarysystem\Student.class
+com\mycompany\librarysystem\MainMenu$25.class
 com\mycompany\librarysystem\Loan.class
 com\mycompany\librarysystem\MainMenu$15.class
 com\mycompany\librarysystem\MainMenu$9.class

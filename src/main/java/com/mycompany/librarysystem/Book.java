@@ -4,7 +4,7 @@
  */
 package com.mycompany.librarysystem;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Book implements Display {
     private int no;
     private String genre;
     private int version;
-    private SimpleDateFormat date;
+    private Date date;
     private boolean onLoan;
     private static int count = 0;
 
@@ -25,7 +25,7 @@ public class Book implements Display {
         
     }
     
-    public Book(String title, Author author, String genre, int version, SimpleDateFormat date) {
+    public Book(String title, Author author, String genre, int version, Date date) {
         this.title = title;
         this.author = author;
         this.no = count++;
@@ -75,11 +75,11 @@ public class Book implements Display {
         this.version = version;
     }
 
-    public SimpleDateFormat getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(SimpleDateFormat date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

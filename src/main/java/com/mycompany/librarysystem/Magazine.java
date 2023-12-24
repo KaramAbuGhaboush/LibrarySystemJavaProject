@@ -9,16 +9,20 @@ package com.mycompany.librarysystem;
  * @author karamyzx
  */
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Magazine extends Book {
 
     private int issueNo;
-    private SimpleDateFormat releaseDate;
+    private Date releaseDate;
 
-    public Magazine(int issueNo, SimpleDateFormat releaseDate, String title, Author author, String genre, int version, SimpleDateFormat date) {
+    public Magazine(int issueNo, Date releaseDate, String title, Author author, String genre, int version, Date date) {
         super(title, author, genre, version, date);
         this.issueNo = issueNo;
         this.releaseDate = releaseDate;
+    }
+
+    Magazine() {
     }
 
     public int getIssueNo() {
@@ -29,11 +33,11 @@ public class Magazine extends Book {
         this.issueNo = issueNo;
     }
 
-    public SimpleDateFormat getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(SimpleDateFormat releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
