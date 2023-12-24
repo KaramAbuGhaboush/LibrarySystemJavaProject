@@ -9,20 +9,21 @@ package com.mycompany.librarysystem;
  * @author karamyzx
  */
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Student {
 
     private int id;
     private String name;
     private String address;
-    private SimpleDateFormat birthDate = new SimpleDateFormat("dd/MM/yyyy");
+    private Date birthDate;
     private String major;
     private int numLoans;
 
     public Student() {
         
     }
-    public Student(int id, String name, String address, SimpleDateFormat birthDate, String major) {
+    public Student(int id, String name, String address, Date birthDate, String major) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -55,11 +56,11 @@ public class Student {
         this.address = address;
     }
 
-    public SimpleDateFormat getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(SimpleDateFormat birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 

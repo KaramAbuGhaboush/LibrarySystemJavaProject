@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  * @author pc
  */
 public class MainMenu extends javax.swing.JFrame {
+
     Library library = new Library();
     Author author = new Author();
     Book book = new Book();
@@ -22,6 +23,7 @@ public class MainMenu extends javax.swing.JFrame {
     Loan loan = new Loan();
     Student student = new Student();
     ArrayList<Author> tempAuthors = new ArrayList<Author>();
+
     public Author searchAuthorInTemp(String authorName) {
         List<Book> foundAuthors = new ArrayList<>();
         for (Author tempAuthor : tempAuthors) {
@@ -31,6 +33,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
         return null;
     }
+
     /**
      * Creates new form MainMenu
      */
@@ -48,20 +51,6 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         AppTabbedPane = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        bookTitleTextField = new javax.swing.JTextField();
-        bookGenreTextField = new javax.swing.JTextField();
-        bookVersionTextField = new javax.swing.JTextField();
-        BookAuthorNameTextField = new javax.swing.JTextField();
-        DeclineButton1 = new javax.swing.JButton();
-        bookAdditionButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton21 = new javax.swing.JButton();
-        bookReleaseDateChooser = new com.toedter.calendar.JDateChooser();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
@@ -110,7 +99,7 @@ public class MainMenu extends javax.swing.JFrame {
         magazineAdditionPaneButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        magazineAdditionButton = new javax.swing.JButton();
         jLabel49 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -121,19 +110,19 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel37 = new javax.swing.JLabel();
         magazineAuthorTextField = new javax.swing.JTextField();
         jButton23 = new javax.swing.JButton();
-        issueNumberTextField = new javax.swing.JTextField();
+        magazineIssueNumberTextField = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
-        releaseDateChooser = new com.toedter.calendar.JDateChooser();
+        magazineReleaseDateChooser = new com.toedter.calendar.JDateChooser();
         jPanel10 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField30 = new javax.swing.JTextField();
+        journalAuthorTextField = new javax.swing.JTextField();
         jButton24 = new javax.swing.JButton();
         conferenceNameTextField = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         journalTitleTextField = new javax.swing.JTextField();
-        jurnalGenreTextField = new javax.swing.JTextField();
+        journalGenreTextField = new javax.swing.JTextField();
         jButton25 = new javax.swing.JButton();
         journalVersionTextField = new javax.swing.JTextField();
         jButton26 = new javax.swing.JButton();
@@ -151,103 +140,36 @@ public class MainMenu extends javax.swing.JFrame {
         studentNumberTextFieldForBookReturn = new javax.swing.JTextField();
         returnBookButton = new javax.swing.JButton();
         mainMenuButtonForReturnBook = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        bookTitleTextField = new javax.swing.JTextField();
+        bookGenreTextField = new javax.swing.JTextField();
+        bookVersionTextField = new javax.swing.JTextField();
+        BookAuthorNameTextField = new javax.swing.JTextField();
+        DeclineButton1 = new javax.swing.JButton();
+        bookAdditionButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jButton21 = new javax.swing.JButton();
+        bookReleaseDateChooser = new com.toedter.calendar.JDateChooser();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        studentMajorTextField = new javax.swing.JLabel();
+        jButton22 = new javax.swing.JButton();
+        studentBirthDateChooser = new com.toedter.calendar.JDateChooser();
+        studentNameTextField = new javax.swing.JTextField();
+        studentIdTextField = new javax.swing.JTextField();
+        studentAddressTextField = new javax.swing.JTextField();
+        BookAuthorNameTextField1 = new javax.swing.JTextField();
+        DeclineButton2 = new javax.swing.JButton();
+        studentAdditionButton = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        DeclineButton1.setText("Decline");
-
-        bookAdditionButton.setText("Add a book");
-        bookAdditionButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookAdditionButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Book Title:");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Book Genre:");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Book Version:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Book Release Date:");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Book Author Name:");
-
-        jButton21.setText("Main Menu");
-        jButton21.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton21ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(369, 369, 369)
-                        .addComponent(bookAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DeclineButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(bookReleaseDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                                .addComponent(BookAuthorNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bookVersionTextField)
-                                .addComponent(bookGenreTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(bookTitleTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(468, 468, 468)
-                        .addComponent(jButton21)))
-                .addGap(143, 354, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookTitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookGenreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(bookVersionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookReleaseDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BookAuthorNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DeclineButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton21)
-                .addContainerGap(185, Short.MAX_VALUE))
-        );
-
-        AppTabbedPane.addTab("BookAddition", jPanel2);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("Book Title:");
@@ -480,6 +402,11 @@ public class MainMenu extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jList2);
 
         jButton10.setText("Search Book");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("MainMenu");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -488,7 +415,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel29.setText("Book Number:");
+        jLabel29.setText("Book Author:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -496,21 +423,22 @@ public class MainMenu extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(324, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton17)
-                        .addGap(39, 39, 39)))
-                .addGap(42, 42, 42)
+                        .addGap(81, 81, 81))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel27)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158))
         );
@@ -536,7 +464,7 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton10)
                             .addComponent(jButton17))))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
 
         AppTabbedPane.addTab("BookSearch", jPanel6);
@@ -644,9 +572,14 @@ public class MainMenu extends javax.swing.JFrame {
 
         AppTabbedPane.addTab("MainMenu", jPanel1);
 
-        jButton14.setText("jButton7");
+        jButton14.setText("Decline");
 
-        jButton15.setText("jButton8");
+        magazineAdditionButton.setText("Add Magazine");
+        magazineAdditionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                magazineAdditionButtonActionPerformed(evt);
+            }
+        });
 
         jLabel49.setText("Magazine Title:");
 
@@ -677,7 +610,7 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(279, 279, 279)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(issueNumberTextField)
+                            .addComponent(magazineIssueNumberTextField)
                             .addComponent(magazineAuthorTextField)
                             .addComponent(magazineVersionTextField, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(magazineGenreTextField)
@@ -687,12 +620,12 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(releaseDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(magazineReleaseDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(289, 289, 289)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(magazineAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
@@ -718,18 +651,18 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(issueNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(magazineIssueNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(releaseDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(magazineReleaseDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel37)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(magazineAuthorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15)
+                    .addComponent(magazineAdditionButton)
                     .addComponent(jButton14))
                 .addGap(18, 18, 18)
                 .addComponent(jButton23)
@@ -753,9 +686,14 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel45.setText(" Date:");
 
-        jButton25.setText("jButton7");
+        jButton25.setText("Decline");
 
-        jButton26.setText("jButton8");
+        jButton26.setText("Add Journal");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         jLabel46.setText("Journal Title:");
 
@@ -775,9 +713,9 @@ public class MainMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton24)
-                    .addComponent(jTextField30)
+                    .addComponent(journalAuthorTextField)
                     .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(journalReleaseDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                    .addComponent(journalReleaseDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                     .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(conferenceNumberTextField)
                     .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -785,11 +723,11 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(journalVersionTextField)
                     .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jurnalGenreTextField)
+                    .addComponent(journalGenreTextField)
                     .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(journalTitleTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                    .addComponent(journalTitleTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
                     .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addContainerGap(390, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -801,7 +739,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jurnalGenreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(journalGenreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
@@ -821,7 +759,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel40)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(journalAuthorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton26)
@@ -891,6 +829,195 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         AppTabbedPane.addTab("BookReturn", jPanel4);
+
+        DeclineButton1.setText("Decline");
+
+        bookAdditionButton.setText("Add a book");
+        bookAdditionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookAdditionButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("Book Title:");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Book Genre:");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setText("Book Version:");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Book Release Date:");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("Book Author Name:");
+
+        jButton21.setText("Main Menu");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(369, 369, 369)
+                        .addComponent(bookAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeclineButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(bookReleaseDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                                .addComponent(BookAuthorNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bookVersionTextField)
+                                .addComponent(bookGenreTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(bookTitleTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(468, 468, 468)
+                        .addComponent(jButton21)))
+                .addGap(143, 354, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookTitleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookGenreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(bookVersionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookReleaseDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BookAuthorNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeclineButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton21)
+                .addContainerGap(185, Short.MAX_VALUE))
+        );
+
+        AppTabbedPane.addTab("BookAddition", jPanel2);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("Student Id:");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Student Address: ");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setText("Student Birth Date:");
+
+        studentMajorTextField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        studentMajorTextField.setText("Student Major:");
+
+        jButton22.setText("Main Menu");
+        jButton22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton22ActionPerformed(evt);
+            }
+        });
+
+        DeclineButton2.setText("Decline");
+
+        studentAdditionButton.setText("Add Student");
+        studentAdditionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentAdditionButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setText("Student Name:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(369, 369, 369)
+                        .addComponent(studentAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DeclineButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(468, 468, 468)
+                        .addComponent(jButton22))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(studentBirthDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(BookAuthorNameTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(studentMajorTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentIdTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(studentNameTextField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(studentAddressTextField, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addGap(143, 354, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(studentIdTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(studentNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(studentAddressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(studentBirthDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(studentMajorTextField)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BookAuthorNameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentAdditionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DeclineButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton22)
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+
+        AppTabbedPane.addTab("StudentAddition", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1014,9 +1141,9 @@ public class MainMenu extends javax.swing.JFrame {
         String authorName = BookAuthorNameTextField.getText();
         Date releaseDate = bookReleaseDateChooser.getDate();
 
-            if (searchAuthorInTemp(authorName) != null) {
-                author = searchAuthorInTemp(authorName);
-            } else if (library.searchByAuthor(authorName).isEmpty()) {
+        if (searchAuthorInTemp(authorName) != null) {
+            author = searchAuthorInTemp(authorName);
+        } else if (library.searchByAuthor(authorName).isEmpty()) {
             AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("AuthorAddition"));
             JOptionPane.showMessageDialog(
                     null,
@@ -1024,16 +1151,16 @@ public class MainMenu extends javax.swing.JFrame {
                     "Author Not Found",
                     JOptionPane.INFORMATION_MESSAGE
             );
-       } else {
-           author = library.getAuthorByName(authorName);
-       }
-       book = new Book(bookTitle, author, bookGenre, bookVersion, releaseDate);
-       bookTitleTextField.setText("");
-       bookGenreTextField.setText("");
-       bookVersionTextField.setText("");
-       BookAuthorNameTextField.setText("");
-       bookReleaseDateChooser.setDate(null);
-       JOptionPane.showMessageDialog(null, "The book is added to the system.");
+        } else {
+            author = library.getAuthorByName(authorName);
+        }
+        book = new Book(bookTitle, author, bookGenre, bookVersion, releaseDate);
+        bookTitleTextField.setText("");
+        bookGenreTextField.setText("");
+        bookVersionTextField.setText("");
+        BookAuthorNameTextField.setText("");
+        bookReleaseDateChooser.setDate(null);
+        JOptionPane.showMessageDialog(null, "The book is added to the system.");
     }//GEN-LAST:event_bookAdditionButtonActionPerformed
 
     private void addAuthorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAuthorButtonActionPerformed
@@ -1047,6 +1174,74 @@ public class MainMenu extends javax.swing.JFrame {
         AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("BookAddition"));
         BookAuthorNameTextField.setText(authorName);
     }//GEN-LAST:event_addAuthorButtonActionPerformed
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
+        // TODO add your handling code here:
+        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void studentAdditionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAdditionButtonActionPerformed
+        // TODO add your handling code here:
+        int studentId = Integer.parseInt(studentIdTextField.getText());
+        String studentName = studentNameTextField.getText();
+        String studentAddress = studentAddressTextField.getText();
+        Date studentBirthDate = studentBirthDateChooser.getDate();
+        String studentMajor = studentMajorTextField.getText();
+        student = new Student(studentId, studentName, studentAddress, studentBirthDate, studentMajor);
+        library.addStudent(student);
+        studentAddressTextField.setText("");
+        studentIdTextField.setText("");
+        studentNameTextField.setText("");
+        studentMajorTextField.setText("");
+        studentBirthDateChooser.setDate(null);
+
+
+    }//GEN-LAST:event_studentAdditionButtonActionPerformed
+
+    private void magazineAdditionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_magazineAdditionButtonActionPerformed
+        // TODO add your handling code here:
+        String magazineTitle = magazineTitleTextField.getText();
+        String magazineGenre = magazineGenreTextField.getText();
+        int magazineVersion = Integer.parseInt(magazineVersionTextField.getText());
+        int magazineIssueNo = Integer.parseInt(magazineIssueNumberTextField.getText());
+        Date magazineReleaseDate = magazineReleaseDateChooser.getDate();
+        String magazineAuthorName = magazineAuthorTextField.getText();
+        magazine = new Magazine (magazineIssueNo, magazineTitle, magazineAuthor, magazineGenre, magazineVersion,magazineReleaseDate);
+        library.addBook(magazine);
+        magazineTitleTextField.setText("");
+        magazineGenreTextField.setText("");
+        magazineVersionTextField.setText("");
+        magazineIssueNumberTextField.setText("");
+        magazineReleaseDateChooser.setDate(null);
+        magazineAuthorTextField.setText("");
+        
+        
+
+    }//GEN-LAST:event_magazineAdditionButtonActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // TODO add your handling code here:
+        String journalTitle = journalTitleTextField.getText();
+        String journalGenre = journalGenreTextField.getText();
+        int journalVersion = Integer.parseInt(journalVersionTextField.getText());
+        String conferenceName = conferenceNameTextField.getText();
+        int conferenceNo = Integer.parseInt(conferenceNumberTextField.getText());
+        Date journalReleaseDate = journalReleaseDateChooser.getDate();
+        String journalAuthorName = journalAuthorTextField.getText();
+        journal = new Journal (conferenceNo, conferenceName, journalTitle, journalAuthorName, journalGenre, journalVersion, journalReleaseDate);
+        library.addBook(journal);
+        journalTitleTextField.setText("");
+        journalGenreTextField.setText("");
+        journalVersionTextField.setText("");
+        conferenceNameTextField.setText("");
+        conferenceNumberTextField.setText("");
+        journalReleaseDateChooser.setDate(null);
+        journalAuthorTextField.setText("");
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1087,7 +1282,9 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTabbedPane AppTabbedPane;
     private com.toedter.calendar.JDateChooser AuthorBirthDateChooser;
     private javax.swing.JTextField BookAuthorNameTextField;
+    private javax.swing.JTextField BookAuthorNameTextField1;
     private javax.swing.JButton DeclineButton1;
+    private javax.swing.JButton DeclineButton2;
     private javax.swing.JButton addAuthorButton;
     private javax.swing.JTextField authorAddressTextField;
     private javax.swing.JTextField authorNameTextField;
@@ -1104,22 +1301,22 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTextField bookVersionTextField;
     private javax.swing.JTextField conferenceNameTextField;
     private javax.swing.JTextField conferenceNumberTextField;
-    private javax.swing.JTextField issueNumberTextField;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1147,12 +1344,16 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -1169,24 +1370,32 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JButton journalAdditionPaneButton;
+    private javax.swing.JTextField journalAuthorTextField;
+    private javax.swing.JTextField journalGenreTextField;
     private com.toedter.calendar.JDateChooser journalReleaseDateChooser;
     private javax.swing.JTextField journalTitleTextField;
     private javax.swing.JTextField journalVersionTextField;
-    private javax.swing.JTextField jurnalGenreTextField;
     private javax.swing.JList<String> loanedBooksList;
     private javax.swing.JButton loanedBooksListPaneButton;
+    private javax.swing.JButton magazineAdditionButton;
     private javax.swing.JButton magazineAdditionPaneButton;
     private javax.swing.JTextField magazineAuthorTextField;
     private javax.swing.JTextField magazineGenreTextField;
+    private javax.swing.JTextField magazineIssueNumberTextField;
+    private com.toedter.calendar.JDateChooser magazineReleaseDateChooser;
     private javax.swing.JTextField magazineTitleTextField;
     private javax.swing.JTextField magazineVersionTextField;
     private javax.swing.JButton mainMenuButtonForReturnBook;
-    private com.toedter.calendar.JDateChooser releaseDateChooser;
     private javax.swing.JButton returnBookButton;
+    private javax.swing.JButton studentAdditionButton;
     private javax.swing.JButton studentAdditionPaneButton;
+    private javax.swing.JTextField studentAddressTextField;
+    private com.toedter.calendar.JDateChooser studentBirthDateChooser;
+    private javax.swing.JTextField studentIdTextField;
+    private javax.swing.JLabel studentMajorTextField;
+    private javax.swing.JTextField studentNameTextField;
     private javax.swing.JTextField studentNumberTextFieldForBookReturn;
     // End of variables declaration//GEN-END:variables
 }
