@@ -23,6 +23,8 @@ public class MainMenu extends javax.swing.JFrame {
     Loan loan = new Loan();
     Student student = new Student();
     ArrayList<Author> tempAuthors = new ArrayList<Author>();
+    ArrayList<Book> showBooks = new ArrayList<Book>();
+    private int lastActiveTabIndex = -1;
 
     public Author searchAuthorInTemp(String authorName) {
         List<Book> foundAuthors = new ArrayList<>();
@@ -32,6 +34,26 @@ public class MainMenu extends javax.swing.JFrame {
             }
         }
         return null;
+    }
+    
+    void displayLoanedBooksList() {
+        String [] listData = new String[showBooks.size()];
+            int index = 0;
+            for (Loan tempLoan: library.getLoans()) {
+                listData[index] = tempLoan.toString();
+                index++;
+            }
+            loanedBooksList.setListData(listData);
+    }
+    
+     void displaySearchResultList() {
+        String [] listData = new String[showBooks.size()];
+            int index = 0;
+            for (Book tempBook: showBooks) {
+                listData[index] = tempBook.toString();
+                index++;
+            }
+            searchResultList.setListData(listData);
     }
 
     /**
@@ -53,41 +75,41 @@ public class MainMenu extends javax.swing.JFrame {
         AppTabbedPane = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField11 = new javax.swing.JTextField();
+        bookTitleTextFieldForBookLoan = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jTextField17 = new javax.swing.JTextField();
+        bookNumberTextFieldForBookLoan = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton11 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        loanTextArea = new javax.swing.JTextArea();
+        bookLoanButton = new javax.swing.JButton();
+        bookLoanMenuButton = new javax.swing.JButton();
+        bookLoanDeclineButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         loanedBooksList = new javax.swing.JList<>();
-        jButton19 = new javax.swing.JButton();
+        loanedBooksListMainMenuButton = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         authorNameTextField = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         authorAddressTextField = new javax.swing.JTextField();
         addAuthorButton = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        addButtonMainMenuButton = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         AuthorBirthDateChooser = new com.toedter.calendar.JDateChooser();
+        addAuthorDeclineButton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        bookTitleTextFieldForBookSearch = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
+        bookAuthorTextFieldForBookSearch = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton10 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        searchResultList = new javax.swing.JList<>();
+        bookSearchButton = new javax.swing.JButton();
+        bookSearchMainMenuButton = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
+        bookNumberTextFieldForBookSearch = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         bookAdditionPaneButton = new javax.swing.JButton();
         bookLoanPaneButton = new javax.swing.JButton();
@@ -109,7 +131,7 @@ public class MainMenu extends javax.swing.JFrame {
         magazineVersionTextField = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
         magazineAuthorTextField = new javax.swing.JTextField();
-        jButton23 = new javax.swing.JButton();
+        magazineAdditionMainMenuButton = new javax.swing.JButton();
         magazineIssueNumberTextField = new javax.swing.JTextField();
         jLabel38 = new javax.swing.JLabel();
         magazineReleaseDateChooser = new com.toedter.calendar.JDateChooser();
@@ -131,15 +153,6 @@ public class MainMenu extends javax.swing.JFrame {
         conferenceNumberTextField = new javax.swing.JTextField();
         jLabel48 = new javax.swing.JLabel();
         journalReleaseDateChooser = new com.toedter.calendar.JDateChooser();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        bookTitleTextFieldForBookReturn = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        bookNumberTextFieldForBookReturn = new javax.swing.JTextField();
-        jLabel28 = new javax.swing.JLabel();
-        studentNumberTextFieldForBookReturn = new javax.swing.JTextField();
-        returnBookButton = new javax.swing.JButton();
-        mainMenuButtonForReturnBook = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         bookTitleTextField = new javax.swing.JTextField();
         bookGenreTextField = new javax.swing.JTextField();
@@ -168,15 +181,23 @@ public class MainMenu extends javax.swing.JFrame {
         DeclineButton2 = new javax.swing.JButton();
         studentAdditionButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        bookTitleTextFieldForBookReturn = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        bookNumberTextFieldForBookReturn = new javax.swing.JTextField();
+        returnBookButton = new javax.swing.JButton();
+        mainMenuButtonForReturnBook = new javax.swing.JButton();
+        returnBookDeclineButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("Book Title:");
 
-        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+        bookTitleTextFieldForBookLoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField11ActionPerformed(evt);
+                bookTitleTextFieldForBookLoanActionPerformed(evt);
             }
         });
 
@@ -192,31 +213,36 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel22.setText("Book Number:");
 
-        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+        bookNumberTextFieldForBookLoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField17ActionPerformed(evt);
+                bookNumberTextFieldForBookLoanActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        loanTextArea.setColumns(20);
+        loanTextArea.setRows(5);
+        jScrollPane1.setViewportView(loanTextArea);
 
-        jButton11.setText("Loan Book");
-
-        jButton20.setText("Main Menu");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        bookLoanButton.setText("Loan Book");
+        bookLoanButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                bookLoanButtonActionPerformed(evt);
             }
         });
 
-        jList3.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        bookLoanMenuButton.setText("Main Menu");
+        bookLoanMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookLoanMenuButtonActionPerformed(evt);
+            }
         });
-        jScrollPane4.setViewportView(jList3);
+
+        bookLoanDeclineButton.setText("Decline");
+        bookLoanDeclineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookLoanDeclineButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -224,15 +250,6 @@ public class MainMenu extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jButton11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(101, 101, 101))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(254, 254, 254)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -240,54 +257,67 @@ public class MainMenu extends javax.swing.JFrame {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(bookTitleTextFieldForBookLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(bookNumberTextFieldForBookLoan, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22)))
-                            .addComponent(jTextField16))
-                        .addGap(31, 31, 31)))
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                            .addComponent(jTextField16)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(307, 307, 307)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(bookLoanButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bookLoanDeclineButton))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(367, 367, 367)
+                        .addComponent(bookLoanMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(89, 89, 89)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(240, Short.MAX_VALUE))
+                        .addComponent(bookTitleTextFieldForBookLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bookNumberTextFieldForBookLoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookLoanButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bookLoanDeclineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(bookLoanMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(237, Short.MAX_VALUE))
         );
 
         AppTabbedPane.addTab("BookLoan", jPanel5);
 
         loanedBooksList.setBorder(javax.swing.BorderFactory.createTitledBorder("Loaned Books"));
+        loanedBooksList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                loanedBooksListValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(loanedBooksList);
 
-        jButton19.setText("Main Menu");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        loanedBooksListMainMenuButton.setText("Main Menu");
+        loanedBooksListMainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                loanedBooksListMainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -298,7 +328,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(293, 293, 293)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loanedBooksListMainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(401, Short.MAX_VALUE))
         );
@@ -308,7 +338,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton19)
+                .addComponent(loanedBooksListMainMenuButton)
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
@@ -337,33 +367,46 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setText("MainMenu");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        addButtonMainMenuButton.setText("MainMenu");
+        addButtonMainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                addButtonMainMenuButtonActionPerformed(evt);
             }
         });
 
         jLabel30.setText("Author Date of Birth:");
+
+        addAuthorDeclineButton.setText("Decline");
+        addAuthorDeclineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addAuthorDeclineButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(authorNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(authorAddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(addAuthorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(AuthorBirthDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(254, 254, 254)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(authorNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(authorAddressTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(addAuthorButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addAuthorDeclineButton, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21))
+                            .addComponent(AuthorBirthDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(351, 351, 351)
+                        .addComponent(addButtonMainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(453, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -384,8 +427,10 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGap(84, 84, 84)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addAuthorButton)
-                    .addComponent(jButton18))
-                .addContainerGap(243, Short.MAX_VALUE))
+                    .addComponent(addAuthorDeclineButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addButtonMainMenuButton)
+                .addContainerGap(231, Short.MAX_VALUE))
         );
 
         AppTabbedPane.addTab("AuthorAddition", jPanel8);
@@ -394,24 +439,20 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel27.setText("Book Number:");
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane3.setViewportView(jList2);
+        searchResultList.setBorder(javax.swing.BorderFactory.createTitledBorder("Search result"));
+        jScrollPane3.setViewportView(searchResultList);
 
-        jButton10.setText("Search Book");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        bookSearchButton.setText("Search Book");
+        bookSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                bookSearchButtonActionPerformed(evt);
             }
         });
 
-        jButton17.setText("MainMenu");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        bookSearchMainMenuButton.setText("MainMenu");
+        bookSearchMainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                bookSearchMainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -421,50 +462,50 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(324, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(226, 226, 226)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jButton10)
+                        .addComponent(bookSearchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton17)
+                        .addComponent(bookSearchMainMenuButton)
                         .addGap(81, 81, 81))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bookNumberTextFieldForBookSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bookAuthorTextFieldForBookSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel27)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bookTitleTextFieldForBookSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(42, 42, 42)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(158, 158, 158))
+                .addGap(256, 256, 256))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(210, 210, 210)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane3)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookTitleTextFieldForBookSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookNumberTextFieldForBookSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
-                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bookAuthorTextFieldForBookSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton10)
-                            .addComponent(jButton17))))
-                .addContainerGap(316, Short.MAX_VALUE))
+                            .addComponent(bookSearchButton)
+                            .addComponent(bookSearchMainMenuButton))))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         AppTabbedPane.addTab("BookSearch", jPanel6);
@@ -573,6 +614,11 @@ public class MainMenu extends javax.swing.JFrame {
         AppTabbedPane.addTab("MainMenu", jPanel1);
 
         jButton14.setText("Decline");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         magazineAdditionButton.setText("Add Magazine");
         magazineAdditionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -591,10 +637,10 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel37.setText("Magazine Author Name:");
 
-        jButton23.setText("Main Menu");
-        jButton23.addActionListener(new java.awt.event.ActionListener() {
+        magazineAdditionMainMenuButton.setText("Main Menu");
+        magazineAdditionMainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton23ActionPerformed(evt);
+                magazineAdditionMainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -630,7 +676,7 @@ public class MainMenu extends javax.swing.JFrame {
                                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(102, 102, 102)
-                                .addComponent(jButton23)))))
+                                .addComponent(magazineAdditionMainMenuButton)))))
                 .addContainerGap(428, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -665,7 +711,7 @@ public class MainMenu extends javax.swing.JFrame {
                     .addComponent(magazineAdditionButton)
                     .addComponent(jButton14))
                 .addGap(18, 18, 18)
-                .addComponent(jButton23)
+                .addComponent(magazineAdditionMainMenuButton)
                 .addContainerGap(143, Short.MAX_VALUE))
         );
 
@@ -687,6 +733,11 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel45.setText(" Date:");
 
         jButton25.setText("Decline");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
 
         jButton26.setText("Add Journal");
         jButton26.addActionListener(new java.awt.event.ActionListener() {
@@ -771,66 +822,12 @@ public class MainMenu extends javax.swing.JFrame {
 
         AppTabbedPane.addTab("JournalAddition", jPanel10);
 
-        jLabel13.setText("Book Title:");
-
-        jLabel25.setText("Book Number:");
-
-        jLabel28.setText("ٍStudent Number:");
-
-        returnBookButton.setText("Return Book");
-
-        mainMenuButtonForReturnBook.setText("Main Menu");
-        mainMenuButtonForReturnBook.addActionListener(new java.awt.event.ActionListener() {
+        DeclineButton1.setText("Decline");
+        DeclineButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mainMenuButtonForReturnBookActionPerformed(evt);
+                DeclineButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(353, 353, 353)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookNumberTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bookTitleTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addComponent(returnBookButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(mainMenuButtonForReturnBook))
-                        .addComponent(studentNumberTextFieldForBookReturn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(357, 357, 357))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(243, Short.MAX_VALUE)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookTitleTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookNumberTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(studentNumberTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(returnBookButton)
-                    .addComponent(mainMenuButtonForReturnBook))
-                .addGap(195, 195, 195))
-        );
-
-        AppTabbedPane.addTab("BookReturn", jPanel4);
-
-        DeclineButton1.setText("Decline");
 
         bookAdditionButton.setText("Add a book");
         bookAdditionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -945,6 +942,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         DeclineButton2.setText("Decline");
+        DeclineButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeclineButton2ActionPerformed(evt);
+            }
+        });
 
         studentAdditionButton.setText("Add Student");
         studentAdditionButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1019,6 +1021,76 @@ public class MainMenu extends javax.swing.JFrame {
 
         AppTabbedPane.addTab("StudentAddition", jPanel3);
 
+        jLabel13.setText("Book Title:");
+
+        jLabel25.setText("Book Number:");
+
+        returnBookButton.setText("Return Book");
+        returnBookButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnBookButtonActionPerformed(evt);
+            }
+        });
+
+        mainMenuButtonForReturnBook.setText("Main Menu");
+        mainMenuButtonForReturnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mainMenuButtonForReturnBookActionPerformed(evt);
+            }
+        });
+
+        returnBookDeclineButton.setText("Decline");
+        returnBookDeclineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnBookDeclineButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(343, 343, 343)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bookTitleTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                    .addComponent(returnBookButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(returnBookDeclineButton))
+                                .addComponent(bookNumberTextFieldForBookReturn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(459, 459, 459)
+                        .addComponent(mainMenuButtonForReturnBook)))
+                .addContainerGap(364, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(197, 197, 197)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookTitleTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookNumberTextFieldForBookReturn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(returnBookButton)
+                    .addComponent(returnBookDeclineButton))
+                .addGap(26, 26, 26)
+                .addComponent(mainMenuButtonForReturnBook)
+                .addContainerGap(275, Short.MAX_VALUE))
+        );
+
+        AppTabbedPane.addTab("BookReturn", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1035,18 +1107,15 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mainMenuButtonForReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonForReturnBookActionPerformed
-        // TODO add your handling code here:
-        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
-    }//GEN-LAST:event_mainMenuButtonForReturnBookActionPerformed
-
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
         // TODO add your handling code here:
+        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
     }//GEN-LAST:event_jButton24ActionPerformed
 
-    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+    private void magazineAdditionMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_magazineAdditionMainMenuButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton23ActionPerformed
+        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
+    }//GEN-LAST:event_magazineAdditionMainMenuButtonActionPerformed
 
     private void magazineAdditionPaneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_magazineAdditionPaneButtonActionPerformed
         // TODO add your handling code here:
@@ -1088,42 +1157,25 @@ public class MainMenu extends javax.swing.JFrame {
         AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("BookAddition"));
     }//GEN-LAST:event_bookAdditionPaneButtonActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+    private void bookSearchMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookSearchMainMenuButtonActionPerformed
         // TODO add your handling code here:
         AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
-    }//GEN-LAST:event_jButton17ActionPerformed
+    }//GEN-LAST:event_bookSearchMainMenuButtonActionPerformed
 
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void loanedBooksListMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loanedBooksListMainMenuButtonActionPerformed
         // TODO add your handling code here:
         AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17ActionPerformed
-
-    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField16ActionPerformed
-
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
+    }//GEN-LAST:event_loanedBooksListMainMenuButtonActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
         // TODO add your handling code here:
         AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
     }//GEN-LAST:event_jButton21ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+    private void addButtonMainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonMainMenuButtonActionPerformed
         // TODO add your handling code here:
         AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
-    }//GEN-LAST:event_jButton18ActionPerformed
+    }//GEN-LAST:event_addButtonMainMenuButtonActionPerformed
 
     private void authorAddressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorAddressTextFieldActionPerformed
         // TODO add your handling code here:
@@ -1144,6 +1196,7 @@ public class MainMenu extends javax.swing.JFrame {
         if (searchAuthorInTemp(authorName) != null) {
             author = searchAuthorInTemp(authorName);
         } else if (library.searchByAuthor(authorName).isEmpty()) {
+            lastActiveTabIndex = AppTabbedPane.getSelectedIndex();
             AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("AuthorAddition"));
             JOptionPane.showMessageDialog(
                     null,
@@ -1171,8 +1224,11 @@ public class MainMenu extends javax.swing.JFrame {
         author = new Author(authorName, authorAddress, authorBirthDate);
         tempAuthors.add(author);
         JOptionPane.showMessageDialog(null, "The author is added");
-        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("BookAddition"));
-        BookAuthorNameTextField.setText(authorName);
+        if (lastActiveTabIndex != -1) {
+        // Switch back to the last active tab
+        AppTabbedPane.setSelectedIndex(lastActiveTabIndex);
+        lastActiveTabIndex = -1; // Reset the index
+        } 
     }//GEN-LAST:event_addAuthorButtonActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
@@ -1206,7 +1262,23 @@ public class MainMenu extends javax.swing.JFrame {
         int magazineIssueNo = Integer.parseInt(magazineIssueNumberTextField.getText());
         Date magazineReleaseDate = magazineReleaseDateChooser.getDate();
         String magazineAuthorName = magazineAuthorTextField.getText();
-        magazine = new Magazine (magazineIssueNo, magazineTitle, magazineAuthor, magazineGenre, magazineVersion,magazineReleaseDate);
+        
+        if (searchAuthorInTemp(magazineAuthorName) != null) {
+            author = searchAuthorInTemp(magazineAuthorName);
+        } else if (library.searchByAuthor(magazineAuthorName).isEmpty()) {
+            lastActiveTabIndex = AppTabbedPane.getSelectedIndex();
+            AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("AuthorAddition"));
+            JOptionPane.showMessageDialog(
+                    null,
+                    "The author you are attempting to add is not currently in the system. Please provide the remaining details to add them to the system.",
+                    "Author Not Found",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            author = library.getAuthorByName(magazineAuthorName);
+        }
+        
+        magazine = new Magazine (magazineIssueNo, magazineTitle, author, magazineGenre, magazineVersion,magazineReleaseDate);
         library.addBook(magazine);
         magazineTitleTextField.setText("");
         magazineGenreTextField.setText("");
@@ -1228,7 +1300,22 @@ public class MainMenu extends javax.swing.JFrame {
         int conferenceNo = Integer.parseInt(conferenceNumberTextField.getText());
         Date journalReleaseDate = journalReleaseDateChooser.getDate();
         String journalAuthorName = journalAuthorTextField.getText();
-        journal = new Journal (conferenceNo, conferenceName, journalTitle, journalAuthorName, journalGenre, journalVersion, journalReleaseDate);
+        
+        if (library.searchByAuthor(journalAuthorName) != null) {
+            author = library.searchByAuthor(journalAuthorName).get(0).getAuthor();
+        } else if (searchAuthorInTemp(journalAuthorName) != null){
+            author = searchAuthorInTemp(journalAuthorName);
+        } else {
+             lastActiveTabIndex = AppTabbedPane.getSelectedIndex();
+            AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("AuthorAddition"));
+            JOptionPane.showMessageDialog(
+                    null,
+                    "The author you are attempting to add is not currently in the system. Please provide the remaining details to add them to the system.",
+                    "Author Not Found",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        journal = new Journal (conferenceNo, conferenceName, journalTitle, author, journalGenre, journalVersion, journalReleaseDate);
         library.addBook(journal);
         journalTitleTextField.setText("");
         journalGenreTextField.setText("");
@@ -1239,9 +1326,158 @@ public class MainMenu extends javax.swing.JFrame {
         journalAuthorTextField.setText("");
     }//GEN-LAST:event_jButton26ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void bookSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookSearchButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+        String bookTitle = bookTitleTextFieldForBookSearch.getText();
+        int bookNumber = Integer.parseInt(bookNumberTextFieldForBookSearch.getText());
+        String bookAuthorName = bookAuthorTextFieldForBookSearch.getText();        
+        
+        if (!bookTitle.isEmpty()) {
+            book = library.searchByTitle(bookTitle);
+            showBooks.add(book);
+        } 
+        if (!bookNumberTextFieldForBookSearch.getText().isEmpty()) {
+            book = library.searchByNo(bookNumber);
+            showBooks.add(book);
+        }
+        if (!bookAuthorTextFieldForBookSearch.getText().isEmpty()) {
+            var authorsBooksList = library.searchByAuthor(bookAuthorName);
+            for (Book tempBook : authorsBooksList) {
+                showBooks.add(tempBook);
+            }
+        }
+        displaySearchResultList();
+    }//GEN-LAST:event_bookSearchButtonActionPerformed
+
+    private void mainMenuButtonForReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonForReturnBookActionPerformed
+        // TODO add your handling code here:
+        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
+    }//GEN-LAST:event_mainMenuButtonForReturnBookActionPerformed
+
+    private void bookLoanMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookLoanMenuButtonActionPerformed
+        // TODO add your handling code here:
+        AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("MainMenu"));
+    }//GEN-LAST:event_bookLoanMenuButtonActionPerformed
+
+    private void bookNumberTextFieldForBookLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNumberTextFieldForBookLoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookNumberTextFieldForBookLoanActionPerformed
+
+    private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField16ActionPerformed
+
+    private void bookTitleTextFieldForBookLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTitleTextFieldForBookLoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookTitleTextFieldForBookLoanActionPerformed
+
+    private void bookLoanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookLoanButtonActionPerformed
+        // TODO add your handling code here:
+        String bookTitle = bookTitleTextFieldForBookLoan.getText();
+        int bookNumber = Integer.parseInt(bookNumberTextFieldForBookLoan.getText());
+        int id = Integer.parseInt(studentIdTextField.getText());
+        student = library.findStudentById(id);
+        
+        if(bookTitle.isEmpty())
+        {
+            book = library.searchByNo(bookNumber);
+        } else {
+            book = library.searchByTitle(bookTitle);
+        }
+        
+        library.loanBook(student, book);
+        displayLoanedBooksList();
+        loanTextArea.setText("Last operation:\n" + book.toString() + "\n" + student.toString());
+        
+        bookTitleTextFieldForBookLoan.setText("");
+        bookNumberTextFieldForBookLoan.setText("");
+        studentIdTextField.setText("");
+        
+    }//GEN-LAST:event_bookLoanButtonActionPerformed
+
+    private void bookLoanDeclineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookLoanDeclineButtonActionPerformed
+        // TODO add your handling code here:
+        bookTitleTextFieldForBookLoan.setText("");
+        bookNumberTextFieldForBookLoan.setText("");
+        studentIdTextField.setText("");
+    }//GEN-LAST:event_bookLoanDeclineButtonActionPerformed
+
+    private void loanedBooksListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_loanedBooksListValueChanged
+        // TODO add your handling code here:
+        displayLoanedBooksList();
+    }//GEN-LAST:event_loanedBooksListValueChanged
+
+    private void returnBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookButtonActionPerformed
+        // TODO add your handling code here:
+        String bookTitle = bookTitleTextFieldForBookReturn.getText();
+        int bookNumber = Integer.parseInt(bookNumberTextFieldForBookReturn.getText());
+        
+        if (bookTitle.isEmpty()) {
+            if (bookNumberTextFieldForBookReturn.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in a one of the fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                book = library.searchByTitle(bookTitle);
+                library.returnBook(book);
+            }
+        }
+        else {
+            book = library.searchByNo(bookNumber);
+            library.returnBook(book);
+        }
+    }//GEN-LAST:event_returnBookButtonActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        // TODO add your handling code here:
+        journalTitleTextField.setText("");
+        journalGenreTextField.setText("");
+        journalVersionTextField.setText("");
+        conferenceNameTextField.setText("");
+        conferenceNumberTextField.setText("");
+        journalReleaseDateChooser.setDate(null);
+        journalAuthorTextField.setText("");
+    }//GEN-LAST:event_jButton25ActionPerformed
+
+    private void addAuthorDeclineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAuthorDeclineButtonActionPerformed
+        // TODO add your handling code here:
+        authorNameTextField.setText("");
+        authorAddressTextField.setText("");
+        AuthorBirthDateChooser.setDate(null);
+    }//GEN-LAST:event_addAuthorDeclineButtonActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        magazineTitleTextField.setText("");
+        magazineGenreTextField.setText("");
+        magazineVersionTextField.setText("");
+        magazineIssueNumberTextField.setText("");
+        magazineReleaseDateChooser.setDate(null);
+        magazineAuthorTextField.setText("");
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void DeclineButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineButton1ActionPerformed
+        // TODO add your handling code here:
+        bookTitleTextField.setText("");
+        bookGenreTextField.setText("");
+        bookVersionTextField.setText("");
+        BookAuthorNameTextField.setText("");
+        bookReleaseDateChooser.setDate(null);
+    }//GEN-LAST:event_DeclineButton1ActionPerformed
+
+    private void DeclineButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineButton2ActionPerformed
+        // TODO add your handling code here:
+        studentAddressTextField.setText("");
+        studentIdTextField.setText("");
+        studentNameTextField.setText("");
+        studentMajorTextField.setText("");
+        studentBirthDateChooser.setDate(null);
+    }//GEN-LAST:event_DeclineButton2ActionPerformed
+
+    private void returnBookDeclineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBookDeclineButtonActionPerformed
+        // TODO add your handling code here:
+        bookTitleTextFieldForBookReturn.setText("");
+        bookNumberTextFieldForBookReturn.setText("");
+    }//GEN-LAST:event_returnBookDeclineButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1286,31 +1522,36 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton DeclineButton1;
     private javax.swing.JButton DeclineButton2;
     private javax.swing.JButton addAuthorButton;
+    private javax.swing.JButton addAuthorDeclineButton;
+    private javax.swing.JButton addButtonMainMenuButton;
     private javax.swing.JTextField authorAddressTextField;
     private javax.swing.JTextField authorNameTextField;
     private javax.swing.JButton bookAdditionButton;
     private javax.swing.JButton bookAdditionPaneButton;
+    private javax.swing.JTextField bookAuthorTextFieldForBookSearch;
     private javax.swing.JTextField bookGenreTextField;
+    private javax.swing.JButton bookLoanButton;
+    private javax.swing.JButton bookLoanDeclineButton;
+    private javax.swing.JButton bookLoanMenuButton;
     private javax.swing.JButton bookLoanPaneButton;
+    private javax.swing.JTextField bookNumberTextFieldForBookLoan;
     private javax.swing.JTextField bookNumberTextFieldForBookReturn;
+    private javax.swing.JTextField bookNumberTextFieldForBookSearch;
     private com.toedter.calendar.JDateChooser bookReleaseDateChooser;
     private javax.swing.JButton bookReturnPaneButton;
+    private javax.swing.JButton bookSearchButton;
+    private javax.swing.JButton bookSearchMainMenuButton;
     private javax.swing.JButton bookSearchPaneButton;
     private javax.swing.JTextField bookTitleTextField;
+    private javax.swing.JTextField bookTitleTextFieldForBookLoan;
     private javax.swing.JTextField bookTitleTextFieldForBookReturn;
+    private javax.swing.JTextField bookTitleTextFieldForBookSearch;
     private javax.swing.JTextField bookVersionTextField;
     private javax.swing.JTextField conferenceNameTextField;
     private javax.swing.JTextField conferenceNumberTextField;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
@@ -1326,7 +1567,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -1348,8 +1588,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -1363,23 +1601,19 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton journalAdditionPaneButton;
     private javax.swing.JTextField journalAuthorTextField;
     private javax.swing.JTextField journalGenreTextField;
     private com.toedter.calendar.JDateChooser journalReleaseDateChooser;
     private javax.swing.JTextField journalTitleTextField;
     private javax.swing.JTextField journalVersionTextField;
+    private javax.swing.JTextArea loanTextArea;
     private javax.swing.JList<String> loanedBooksList;
+    private javax.swing.JButton loanedBooksListMainMenuButton;
     private javax.swing.JButton loanedBooksListPaneButton;
     private javax.swing.JButton magazineAdditionButton;
+    private javax.swing.JButton magazineAdditionMainMenuButton;
     private javax.swing.JButton magazineAdditionPaneButton;
     private javax.swing.JTextField magazineAuthorTextField;
     private javax.swing.JTextField magazineGenreTextField;
@@ -1389,6 +1623,8 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTextField magazineVersionTextField;
     private javax.swing.JButton mainMenuButtonForReturnBook;
     private javax.swing.JButton returnBookButton;
+    private javax.swing.JButton returnBookDeclineButton;
+    private javax.swing.JList<String> searchResultList;
     private javax.swing.JButton studentAdditionButton;
     private javax.swing.JButton studentAdditionPaneButton;
     private javax.swing.JTextField studentAddressTextField;
@@ -1396,6 +1632,5 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JTextField studentIdTextField;
     private javax.swing.JLabel studentMajorTextField;
     private javax.swing.JTextField studentNameTextField;
-    private javax.swing.JTextField studentNumberTextFieldForBookReturn;
     // End of variables declaration//GEN-END:variables
 }
