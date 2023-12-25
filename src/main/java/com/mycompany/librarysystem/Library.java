@@ -51,7 +51,6 @@ public class Library {
             String[] parts = line.split(",");
             // Check if the parts array has the expected number of elements
             if (parts.length != 9) {
-                // Log error or handle it as needed
                 return null;
             }
 
@@ -67,14 +66,20 @@ public class Library {
             book.setOnLoan(Boolean.parseBoolean(parts[8]));
 
             return book;
-        } catch (NumberFormatException | ParseException e) {
-            // Handle parsing exceptions (invalid integer or date format)
-            // Log the error or handle it as needed
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing number from the file: " + line + "\nError: " + e.getMessage());
+            // You might want to log this error using a logging framework or handle it further.
+            return null;
+        } catch (ParseException e) {
+            System.err.println("Error parsing date from the file: " + line + "\nError: " + e.getMessage());
+            // Again, consider logging this error or taking additional actions.
             return null;
         } catch (Exception e) {
-            // Handle other unforeseen exceptions
+            System.err.println("Unexpected error occurred while parsing the file: " + line + "\nError: " + e.getMessage());
+            // Log this error or handle it as needed.
             return null;
         }
+
     }
 
     private Student parseStudent(String line) {
@@ -82,7 +87,6 @@ public class Library {
             String[] parts = line.split(",");
             // Check if the parts array has the expected number of elements
             if (parts.length != 6) {
-                // Log error or handle it as needed
                 return null;
             }
 
@@ -97,11 +101,8 @@ public class Library {
             student.setNumLoans(numLoans);
             return student;
         } catch (NumberFormatException | ParseException e) {
-            // Handle parsing exceptions (invalid integer or date format)
-            // Log the error or handle it as needed
             return null;
         } catch (Exception e) {
-            // Handle other unforeseen exceptions
             return null;
         }
     }
@@ -230,15 +231,14 @@ public class Library {
 
     // File saving method
     private void saveItem(String fileName, String itemString) {
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-        writer.write(itemString);
-        writer.newLine();
-        System.out.println("Data saved to " + fileName); // For debugging
-    } catch (IOException e) {
-        e.printStackTrace(); // Print stack trace in case of IOException
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            writer.write(itemString);
+            writer.newLine();
+            System.out.println("Data saved to " + fileName); // For debugging
+        } catch (IOException e) {
+            e.printStackTrace(); // Print stack trace in case of IOException
+        }
     }
-}
-
 
     private void updateBookFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOKS_FILE))) {
