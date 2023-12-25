@@ -4,6 +4,7 @@
  */
 package com.mycompany.librarysystem;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -96,6 +97,14 @@ public class Book implements Display {
     @Override
     public boolean inLoan() {
         return onLoan;
+    }
+    
+    public String toFileString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return getTitle() + "," + getAuthor().getName() + "," + getAuthor().getAddress() +
+               "," + dateFormat.format(getAuthor().getBirthDate()) + "," + getGenre() +
+               "," + getVersion() + "," + dateFormat.format(getDate()) +
+               "," + getNo() + "," + inLoan();
     }
 
 }

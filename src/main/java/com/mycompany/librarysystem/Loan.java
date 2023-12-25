@@ -60,5 +60,9 @@ public class Loan {
         LocalDate currentDate = LocalDate.now();
         return currentDate.isAfter(dueDate);
     }
+    
+     public String toFileString() {
+        return getBook().getNo() + "," + getStudent().getId() + "," + getDueDate();
+    }
 
 }

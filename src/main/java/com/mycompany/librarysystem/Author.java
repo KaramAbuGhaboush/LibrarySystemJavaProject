@@ -8,6 +8,7 @@ package com.mycompany.librarysystem;
  *
  * @author karamyzx
  */
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Author {
@@ -62,7 +63,11 @@ public class Author {
     }
 
     // Method to get information about the author
-    public String getInfo() {
-        return "Author ID: " + id + "\nName: " + name + "\nAddress: " + address + "\nBirth Date: " + birthDate.toString();
-    }
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return "Author{" + "id=" + id + ", name='" + name + '\'' +
+               ", address='" + address + '\'' + ", birthDate=" + 
+               dateFormat.format(birthDate) + '}';
+}
 }

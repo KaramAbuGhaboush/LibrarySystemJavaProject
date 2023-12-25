@@ -4,6 +4,7 @@
  */
 package com.mycompany.librarysystem;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,11 +50,15 @@ public class MainMenu extends javax.swing.JFrame {
      void displaySearchResultList() {
         String [] listData = new String[showBooks.size()];
             int index = 0;
+            if (!showBooks.isEmpty()) {
+                
+            
             for (Book tempBook: showBooks) {
                 listData[index] = tempBook.toString();
                 index++;
             }
             searchResultList.setListData(listData);
+            }
     }
 
     /**
@@ -73,6 +78,15 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         AppTabbedPane = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        bookAdditionPaneButton = new javax.swing.JButton();
+        bookLoanPaneButton = new javax.swing.JButton();
+        studentAdditionPaneButton = new javax.swing.JButton();
+        bookSearchPaneButton = new javax.swing.JButton();
+        bookReturnPaneButton = new javax.swing.JButton();
+        loanedBooksListPaneButton = new javax.swing.JButton();
+        journalAdditionPaneButton = new javax.swing.JButton();
+        magazineAdditionPaneButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         bookTitleTextFieldForBookLoan = new javax.swing.JTextField();
@@ -110,15 +124,6 @@ public class MainMenu extends javax.swing.JFrame {
         bookSearchMainMenuButton = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         bookNumberTextFieldForBookSearch = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        bookAdditionPaneButton = new javax.swing.JButton();
-        bookLoanPaneButton = new javax.swing.JButton();
-        studentAdditionPaneButton = new javax.swing.JButton();
-        bookSearchPaneButton = new javax.swing.JButton();
-        bookReturnPaneButton = new javax.swing.JButton();
-        loanedBooksListPaneButton = new javax.swing.JButton();
-        journalAdditionPaneButton = new javax.swing.JButton();
-        magazineAdditionPaneButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jButton14 = new javax.swing.JButton();
         magazineAdditionButton = new javax.swing.JButton();
@@ -191,6 +196,109 @@ public class MainMenu extends javax.swing.JFrame {
         returnBookDeclineButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        bookAdditionPaneButton.setText("Add a book");
+        bookAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookAdditionPaneButtonActionPerformed(evt);
+            }
+        });
+
+        bookLoanPaneButton.setText("Loan a book");
+        bookLoanPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookLoanPaneButtonActionPerformed(evt);
+            }
+        });
+
+        studentAdditionPaneButton.setText("Add a student");
+        studentAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentAdditionPaneButtonActionPerformed(evt);
+            }
+        });
+
+        bookSearchPaneButton.setText("Search a book");
+        bookSearchPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookSearchPaneButtonActionPerformed(evt);
+            }
+        });
+
+        bookReturnPaneButton.setText("Return a book");
+        bookReturnPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookReturnPaneButtonActionPerformed(evt);
+            }
+        });
+
+        loanedBooksListPaneButton.setText("The Loaned Books List");
+        loanedBooksListPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loanedBooksListPaneButtonActionPerformed(evt);
+            }
+        });
+
+        journalAdditionPaneButton.setText("Add a journal");
+        journalAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                journalAdditionPaneButtonActionPerformed(evt);
+            }
+        });
+
+        magazineAdditionPaneButton.setText("Add a magazine");
+        magazineAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                magazineAdditionPaneButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(272, 272, 272)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(journalAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(magazineAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bookAdditionPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bookLoanPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bookSearchPaneButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(studentAdditionPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bookReturnPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loanedBooksListPaneButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(425, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(150, 150, 150)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(journalAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(magazineAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bookReturnPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bookLoanPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bookSearchPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loanedBooksListPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(216, Short.MAX_VALUE))
+        );
+
+        AppTabbedPane.addTab("MainMenu", jPanel1);
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setText("Book Title:");
@@ -509,109 +617,6 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         AppTabbedPane.addTab("BookSearch", jPanel6);
-
-        bookAdditionPaneButton.setText("Add a book");
-        bookAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookAdditionPaneButtonActionPerformed(evt);
-            }
-        });
-
-        bookLoanPaneButton.setText("Loan a book");
-        bookLoanPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookLoanPaneButtonActionPerformed(evt);
-            }
-        });
-
-        studentAdditionPaneButton.setText("Add a student");
-        studentAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentAdditionPaneButtonActionPerformed(evt);
-            }
-        });
-
-        bookSearchPaneButton.setText("Search a book");
-        bookSearchPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookSearchPaneButtonActionPerformed(evt);
-            }
-        });
-
-        bookReturnPaneButton.setText("Return a book");
-        bookReturnPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookReturnPaneButtonActionPerformed(evt);
-            }
-        });
-
-        loanedBooksListPaneButton.setText("The Loaned Books List");
-        loanedBooksListPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loanedBooksListPaneButtonActionPerformed(evt);
-            }
-        });
-
-        journalAdditionPaneButton.setText("Add a journal");
-        journalAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                journalAdditionPaneButtonActionPerformed(evt);
-            }
-        });
-
-        magazineAdditionPaneButton.setText("Add a magazine");
-        magazineAdditionPaneButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                magazineAdditionPaneButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(272, 272, 272)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(journalAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(magazineAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bookAdditionPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookLoanPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookSearchPaneButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(studentAdditionPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bookReturnPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loanedBooksListPaneButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(425, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(journalAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(magazineAdditionPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bookReturnPaneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bookLoanPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bookSearchPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loanedBooksListPaneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(216, Short.MAX_VALUE))
-        );
-
-        AppTabbedPane.addTab("MainMenu", jPanel1);
 
         jButton14.setText("Decline");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -1187,14 +1192,35 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bookAdditionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAdditionButtonActionPerformed
         // TODO add your handling code here:
-        String bookTitle = bookTitleTextField.getText();
-        String bookGenre = bookGenreTextField.getText();
-        int bookVersion = Integer.parseInt(bookVersionTextField.getText());
-        String authorName = BookAuthorNameTextField.getText();
-        Date releaseDate = bookReleaseDateChooser.getDate();
+    String bookTitle = bookTitleTextField.getText().trim();
+    String bookGenre = bookGenreTextField.getText().trim();
+    String bookVersionText = bookVersionTextField.getText().trim();
+    String authorName = BookAuthorNameTextField.getText().trim();
+    Date releaseDate = bookReleaseDateChooser.getDate();
+
+    // Input validation
+    if (bookTitle.isEmpty() || bookGenre.isEmpty() || bookVersionText.isEmpty() || authorName.isEmpty() || releaseDate == null) {
+        JOptionPane.showMessageDialog(null, "Please fill in all the fields correctly.", "Incomplete Information", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    int bookVersion;
+    try {
+        bookVersion = Integer.parseInt(bookVersionText);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Invalid format for book version. Please enter a numerical value.", "Format Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
         if (searchAuthorInTemp(authorName) != null) {
             author = searchAuthorInTemp(authorName);
+            book = new Book(bookTitle, author, bookGenre, bookVersion, releaseDate);
+        JOptionPane.showMessageDialog(null, "The book is added to the system.");
+        bookTitleTextField.setText("");
+        bookGenreTextField.setText("");
+        bookVersionTextField.setText("");
+        BookAuthorNameTextField.setText("");
+        bookReleaseDateChooser.setDate(null);
         } else if (library.searchByAuthor(authorName).isEmpty()) {
             lastActiveTabIndex = AppTabbedPane.getSelectedIndex();
             AppTabbedPane.setSelectedIndex(AppTabbedPane.indexOfTab("AuthorAddition"));
@@ -1206,14 +1232,15 @@ public class MainMenu extends javax.swing.JFrame {
             );
         } else {
             author = library.getAuthorByName(authorName);
-        }
-        book = new Book(bookTitle, author, bookGenre, bookVersion, releaseDate);
+            book = new Book(bookTitle, author, bookGenre, bookVersion, releaseDate);
+        JOptionPane.showMessageDialog(null, "The book is added to the system.");
         bookTitleTextField.setText("");
         bookGenreTextField.setText("");
         bookVersionTextField.setText("");
         BookAuthorNameTextField.setText("");
         bookReleaseDateChooser.setDate(null);
-        JOptionPane.showMessageDialog(null, "The book is added to the system.");
+        }
+        
     }//GEN-LAST:event_bookAdditionButtonActionPerformed
 
     private void addAuthorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAuthorButtonActionPerformed
@@ -1328,25 +1355,52 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void bookSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookSearchButtonActionPerformed
         // TODO add your handling code here:
-        String bookTitle = bookTitleTextFieldForBookSearch.getText();
-        int bookNumber = Integer.parseInt(bookNumberTextFieldForBookSearch.getText());
-        String bookAuthorName = bookAuthorTextFieldForBookSearch.getText();        
-        
-        if (!bookTitle.isEmpty()) {
-            book = library.searchByTitle(bookTitle);
-            showBooks.add(book);
-        } 
-        if (!bookNumberTextFieldForBookSearch.getText().isEmpty()) {
-            book = library.searchByNo(bookNumber);
+        String bookTitle = bookTitleTextFieldForBookSearch.getText().trim();
+    String bookNumberText = bookNumberTextFieldForBookSearch.getText().trim();
+    String bookAuthorName = bookAuthorTextFieldForBookSearch.getText().trim();
+
+    // Clearing previous search results
+    showBooks.clear();
+
+    // Handling number input with error checking
+    int bookNumber = 0;
+    boolean numberProvided = false;
+    if (!bookNumberText.isEmpty()) {
+        try {
+            bookNumber = Integer.parseInt(bookNumberText);
+            numberProvided = true;
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid format for book number. Please enter a numerical value.", "Format Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+
+    // Search logic
+    if (!bookTitle.isEmpty()) {
+        book = library.searchByTitle(bookTitle);
+        if (book != null) {
             showBooks.add(book);
         }
-        if (!bookAuthorTextFieldForBookSearch.getText().isEmpty()) {
-            var authorsBooksList = library.searchByAuthor(bookAuthorName);
-            for (Book tempBook : authorsBooksList) {
-                showBooks.add(tempBook);
-            }
+    } 
+    if (numberProvided) {
+        book = library.searchByNo(bookNumber);
+        if (book != null) {
+            showBooks.add(book);
         }
+    }
+    if (!bookAuthorName.isEmpty()) {
+        var authorsBooksList = library.searchByAuthor(bookAuthorName);
+        if (authorsBooksList != null) {
+            showBooks.addAll(authorsBooksList);
+        }
+    }
+
+    // Displaying search results
+    if (showBooks.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No books found matching the search criteria.", "No Results", JOptionPane.INFORMATION_MESSAGE);
+    } else {
         displaySearchResultList();
+    }
     }//GEN-LAST:event_bookSearchButtonActionPerformed
 
     private void mainMenuButtonForReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonForReturnBookActionPerformed
@@ -1509,6 +1563,7 @@ public class MainMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                System.out.println("Current working directory: " + new File(".").getAbsolutePath());
                 new MainMenu().setVisible(true);
             }
         });

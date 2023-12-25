@@ -98,4 +98,11 @@ public class Student {
             numLoans--;
         }
     }
+    
+    public String toFileString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return getId() + "," + getName() + "," + getAddress() +
+               "," + dateFormat.format(getBirthDate()) + "," + getMajor() +
+               "," + getNumLoans();
+    }
 }
