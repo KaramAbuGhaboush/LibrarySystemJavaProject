@@ -8,12 +8,18 @@ package com.mycompany.librarysystem;
  *
  * @author karamyzx
  */
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -35,7 +41,6 @@ public class Library {
 
     }
 
-    // File loading methods
     private <T> Collection<T> loadItems(String fileName, Function<String, T> parser) {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             return stream.map(parser).collect(Collectors.toList());
@@ -49,7 +54,6 @@ public class Library {
     private Book parseBook(String line) {
         try {
             String[] parts = line.split(",");
-            // Check if the parts array has the expected number of elements
             if (parts.length != 9) {
                 return null;
             }
@@ -57,9 +61,9 @@ public class Library {
             Author author = new Author();
             author.setName(parts[1]);
             author.setAddress(parts[2]);
-            author.setBirthDate(dateFormat.parse(parts[3])); // May throw ParseException
+            author.setBirthDate(dateFormat.parse(parts[3]));
 
-            Date date = dateFormat.parse(parts[6]); // May throw ParseException
+            Date date = dateFormat.parse(parts[6]);
 
             Book book = new Book(parts[0], author, parts[4], Integer.parseInt(parts[5]), date);
             book.setNo(Integer.parseInt(parts[7]));
@@ -68,15 +72,12 @@ public class Library {
             return book;
         } catch (NumberFormatException e) {
             System.err.println("Error parsing number from the file: " + line + "\nError: " + e.getMessage());
-            // You might want to log this error using a logging framework or handle it further.
             return null;
         } catch (ParseException e) {
             System.err.println("Error parsing date from the file: " + line + "\nError: " + e.getMessage());
-            // Again, consider logging this error or taking additional actions.
             return null;
         } catch (Exception e) {
             System.err.println("Unexpected error occurred while parsing the file: " + line + "\nError: " + e.getMessage());
-            // Log this error or handle it as needed.
             return null;
         }
 
@@ -85,7 +86,6 @@ public class Library {
     private Student parseStudent(String line) {
         try {
             String[] parts = line.split(",");
-            // Check if the parts array has the expected number of elements
             if (parts.length != 6) {
                 return null;
             }
@@ -93,7 +93,7 @@ public class Library {
             int id = Integer.parseInt(parts[0]);
             String name = parts[1];
             String address = parts[2];
-            Date birthDate = dateFormat.parse(parts[3]); // May throw ParseException
+            Date birthDate = dateFormat.parse(parts[3]);
             String major = parts[4];
             int numLoans = Integer.parseInt(parts[5]);
 
@@ -108,7 +108,6 @@ public class Library {
     }
 
     private Loan parseLoan(String line) {
-        // Assuming format: bookNo,studentId,dueDate
         String[] parts = line.split(",");
         Book book = searchByNo(Integer.parseInt(parts[0]));
         Student student = findStudentById(Integer.parseInt(parts[1]));
@@ -148,12 +147,12 @@ public class Library {
 
     public void addBook(Book book) {
         books.add(book);
-        saveItem(BOOKS_FILE, book.toFileString()); // Save the book to file
+        saveItem(BOOKS_FILE, book.toFileString());
     }
 
     public void addStudent(Student student) {
         students.add(student);
-        saveItem(STUDENTS_FILE, student.toFileString()); // Save the student to file
+        saveItem(STUDENTS_FILE, student.toFileString());
     }
 
     public Student findStudentById(int id) {
@@ -169,10 +168,10 @@ public class Library {
         if (student.getNumLoans() < 3 && !book.inLoan()) {
             Loan loan = new Loan(book, student);
             loans.add(loan);
-            saveItem(LOANS_FILE, loan.toFileString()); // Save the new loan to file
+            saveItem(LOANS_FILE, loan.toFileString());
 
             book.setOnLoan(true);
-            updateBookFile(); // Update the books file with the new state of the book
+            updateBookFile();
 
             student.incrementNumLoans();
             return true;
@@ -184,10 +183,10 @@ public class Library {
         for (Loan loan : loans) {
             if (loan.getBook().equals(book)) {
                 loans.remove(loan);
-                saveItem(LOANS_FILE, convertLoanListToFileString(loans)); // Update the loans file
+                saveItem(LOANS_FILE, convertLoanListToFileString(loans));
 
                 book.setOnLoan(false);
-                updateBookFile(); // Update the books file with the new state of the book
+                updateBookFile();
 
                 loan.getStudent().decrementNumLoans();
                 return true;
@@ -196,7 +195,6 @@ public class Library {
         return false;
     }
 
-    // Method to check overdue loans
     public List<Loan> getOverdueLoans() {
         List<Loan> overdueLoans = new ArrayList<>();
         for (Loan loan : loans) {
@@ -207,7 +205,6 @@ public class Library {
         return overdueLoans;
     }
 
-    // Getters for books, students, and loans in the library
     public Collection<Book> getBooks() {
         return books;
     }
@@ -223,20 +220,20 @@ public class Library {
     public Author getAuthorByName(String nameToFind) {
         for (Book book : books) {
             if (book.getAuthor().getName().equalsIgnoreCase(nameToFind)) {
-                return book.getAuthor(); // Found the author by name, return it
+                return book.getAuthor();
             }
         }
-        return null; // Author not found
+        return null;
     }
 
-    // File saving method
+
     private void saveItem(String fileName, String itemString) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             writer.write(itemString);
             writer.newLine();
-            System.out.println("Data saved to " + fileName); // For debugging
+            System.out.println("Data saved to " + fileName);
         } catch (IOException e) {
-            e.printStackTrace(); // Print stack trace in case of IOException
+            e.printStackTrace();
         }
     }
 
@@ -247,7 +244,6 @@ public class Library {
                 writer.newLine();
             }
         } catch (IOException e) {
-            // Handle exception
         }
     }
 
@@ -257,7 +253,6 @@ public class Library {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    // Utility methods to convert entities to strings for file storage
     private String convertBookToFileString(Book book) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return String.join(",", book.getTitle(), book.getAuthor().getName(), book.getAuthor().getAddress(),
