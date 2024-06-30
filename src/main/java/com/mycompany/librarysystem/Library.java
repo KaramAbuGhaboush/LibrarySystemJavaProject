@@ -226,7 +226,6 @@ public class Library {
         return null;
     }
 
-
     private void saveItem(String fileName, String itemString) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             writer.write(itemString);
